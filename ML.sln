@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML.WebUI", "ML.WebUI\ML.WebUI.csproj", "{58D18A8A-95B7-498B-9D31-462BC5103F38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML.Domain", "ML.Domain\ML.Domain.csproj", "{535C0A58-1ECF-4D9F-992D-56A445DBE77A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML.UnitTests", "ML.UnitTests\ML.UnitTests.csproj", "{0214C156-B5D6-4B64-8C30-5571DC329960}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58D18A8A-95B7-498B-9D31-462BC5103F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58D18A8A-95B7-498B-9D31-462BC5103F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58D18A8A-95B7-498B-9D31-462BC5103F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58D18A8A-95B7-498B-9D31-462BC5103F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{535C0A58-1ECF-4D9F-992D-56A445DBE77A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{535C0A58-1ECF-4D9F-992D-56A445DBE77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{535C0A58-1ECF-4D9F-992D-56A445DBE77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{535C0A58-1ECF-4D9F-992D-56A445DBE77A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0214C156-B5D6-4B64-8C30-5571DC329960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0214C156-B5D6-4B64-8C30-5571DC329960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0214C156-B5D6-4B64-8C30-5571DC329960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0214C156-B5D6-4B64-8C30-5571DC329960}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
