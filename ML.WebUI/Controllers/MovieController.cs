@@ -10,10 +10,10 @@ namespace ML.WebUI.Controllers
 {
     public class MovieController : Controller
     {
-        private IProductRepository repository;
-        public MovieController(IProductRepository productRepository)
+        private IMovieRepository repository;
+        public MovieController(IMovieRepository movieRepository)
         {
-            this.repository = productRepository;
+            this.repository = movieRepository;
         }
 
         // GET: Movie

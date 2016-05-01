@@ -6,6 +6,7 @@ using Moq;
 using Ninject;
 using ML.Domain.Abstract;
 using ML.Domain.Entities;
+using ML.Domain.Concrete;
 
 namespace ML.WebUI.Infrastructure
 {
@@ -27,13 +28,15 @@ namespace ML.WebUI.Infrastructure
         }
         private void AddBindings()
         {
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(m => m.Movies).Returns(new List<Movie> {
-             new Movie { Title = "Inception", Description = "desc inception" },
-             new Movie { Title = "Insomnia", Description = "desc insomnia"  },
-             new Movie { Title = "Interstellar", Description = "desc interstellar"  }
-             });
-            kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+            kernel.Bind<IMovieRepository>().To<EFMovieRepository>();
+
+            //Mock<IMovieRepository> mock = new Mock<IMovieRepository>();
+            //mock.Setup(m => m.Movies).Returns(new List<Movie> {
+            // new Movie { Title = "Inception", Description = "desc inception" },
+            // new Movie { Title = "Insomnia", Description = "desc insomnia"  },
+            // new Movie { Title = "Interstellar", Description = "desc interstellar"  }
+            // });
+            //kernel.Bind<IMovieRepository>().ToConstant(mock.Object);
         }
     }
 }

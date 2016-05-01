@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ML.Domain.Entities;
+using System.Data.Entity;
 
-namespace ML.Domain.Abstract
+namespace ML.Domain.Concrete
 {
-    public interface IProductRepository
+    public class EFDbContext : DbContext
     {
-        IEnumerable<Movie> Movies { get; }
+        public DbSet<Movie> Movies { get; set; }
     }
 }
