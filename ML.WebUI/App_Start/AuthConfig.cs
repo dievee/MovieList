@@ -33,7 +33,7 @@ namespace CleanProjectWIdentity
 
             OAuthWebSecurity.RegisterClient(
                 client: new VKontakteAuthenticationClient(
-                "5117595", "OMrOlmgjtQdEgPoOmQFt"),
+                "5444662", "KRGpgKgZmQ7eJTxTPOAp"),
                 displayName: "ВКонтакте", // надпись на кнопке
                 extraData: null);
         }
