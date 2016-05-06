@@ -6,9 +6,9 @@ using ML.Domain.Concrete;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.AspNet.Identity;
 
-[assembly: OwinStartup(typeof(CleanProjectWIdentity.Startup))]
+[assembly: OwinStartup(typeof(ML.WebUI.App_Start.Startup))]
 
-namespace CleanProjectWIdentity
+namespace ML.WebUI.App_Start
 {
     public class Startup
     {

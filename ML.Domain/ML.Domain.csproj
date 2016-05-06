@@ -125,7 +125,9 @@
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFMovieRepository.cs" />
     <Compile Include="Entities\AccountModels.cs" />
+    <Compile Include="Entities\LoginModel.cs" />
     <Compile Include="Entities\Movie.cs" />
+    <Compile Include="Entities\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

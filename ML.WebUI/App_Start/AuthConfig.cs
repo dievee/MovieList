@@ -7,7 +7,7 @@ using Microsoft.Web.WebPages.OAuth;
 using ML.WebUI.Code;
 using DotNetOpenAuth.AspNet;
 
-namespace CleanProjectWIdentity
+namespace ML.WebUI.App_Start
 {
     public static class AuthConfig
     {
