@@ -13,5 +13,8 @@ namespace ML.Domain.Entities
         public string Description { get; set; }
         public decimal Mark { get; set; }
         public string Category { get; set; }
+
+        public int? UserId { get; set; }
+        public UserProfile UserProfile { get; set; }
     }
 }

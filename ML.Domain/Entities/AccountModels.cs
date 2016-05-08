@@ -34,5 +34,7 @@ namespace ML.Domain.Entities
         public string music { get; set; }
         public string status { get; set; }
         public string accesstoken { get; set; }
+
+        public IEnumerable<Movie> Movies { get; set; }
     }
 }

@@ -27,5 +27,11 @@ namespace ML.WebUI.Controllers
             return View(repository.Movies);
         }
 
+        [HttpGet]
+        public ViewResult Add()
+        {
+
+            return View();
+        }
     }
 }

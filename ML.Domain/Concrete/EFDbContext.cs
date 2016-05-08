@@ -11,5 +11,7 @@ namespace ML.Domain.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<Movie> Movies { get; set; }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
     }
 }

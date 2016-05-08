@@ -12,5 +12,9 @@ namespace ML.Domain.Concrete
         {
             get { return context.Movies; }
         }
+        public IEnumerable<UserProfile> UserProfiles
+        {
+            get { return context.UserProfiles; }
+        }
     }
 }
