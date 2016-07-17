@@ -39,52 +39,64 @@
         }
         else
         {
-            <div class="movie">
-                <div class="title">
-                    <h4><a href="@ViewBag.movie.IMDBLink">@ViewBag.movie.Title</a></h4>
-                </div>
-                <div class="body">
-                    <div class="poster">
-                        <img src="@ViewBag.movie.Poster" />
-                    </div>
-                    <div class="movieinfo">
-                        <div class="rating">
-                            @ViewBag.movie.EventDate  @ViewBag.movie.IMDBRating
+            <div class="row">
+                <div class="col-md-8 col-centered">
+                    <div class="movie">
+                        <div class="title">
+                            <h2><a href="@ViewBag.movie.IMDBLink">@ViewBag.movie.Title</a></h2>
                         </div>
-                        <div class="description">
-                            @ViewBag.movie.Description
+                        <div class="body">
+                            <div class="poster">
+                                <img src="@ViewBag.movie.Poster" />
+                            </div>
+                            <div class="movieinfo">
+                                <div class="rating">
+                                    <b> @ViewBag.movie.EventDate</b>  @ViewBag.movie.IMDBRating
+                                    <br />
+                                </div>
+                                <div class="description">
+                                    @ViewBag.movie.Description
+                                </div>
+                                <div class="comment">
+                                    @using (Html.BeginForm("Add", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    {
+                                        @Html.HiddenFor(m => m.Title, new { Value = (string)ViewBag.movie.Title })
+                                        @Html.HiddenFor(m => m.Poster, new { Value = (string)ViewBag.movie.Poster })
+                                        @Html.HiddenFor(m => m.Description, new { Value = (string)ViewBag.movie.Description })
+                                        @Html.HiddenFor(m => m.IMDBRating, new { Value = (string)ViewBag.movie.IMDBRating })
+                                        @Html.HiddenFor(m => m.EventDate, new { Value = ViewBag.movie.EventDate })
+                                        @Html.HiddenFor(m => m.IMDBLink, new { Value = (string)ViewBag.movie.IMDBLink })
+
+                                        <br />
+                                        @Html.TextAreaFor(m => m.Comment, new { @id = "comment", @placeholder = "Comment", @rows = 5, @class = "form-control" })
+                                        <br />
+                                        <div class="ratinggroup" style="width: 150px; height: 50px; margin: auto;">
+                                            <fieldset class="rating">
+                                                @* http://codepen.io/jamesbarnett/pen/vlpkh *@
+                                                @Html.RadioButton("Mark", "5", new { @id = "star5" })<label class="full" for="star5" title="Awesome"></label>
+                                                @Html.RadioButton("Mark", "4", new { @id = "star4" })<label class="full" for="star4" title="Pretty good"></label>
+                                                @Html.RadioButton("Mark", "3", new { @id = "star3" })<label class="full" for="star3" title="Meh"></label>
+                                                @Html.RadioButton("Mark", "2", new { @id = "star2" })<label class="full" for="star2" title="Bad"></label>
+                                                @Html.RadioButton("Mark", "1", new { @id = "star1" })<label class="full" for="star1" title="So bad"></label>
+                                            </fieldset>
+                                        </div>
+                                        <center><input type="submit" class="btn btn-primary" value=Add /></center>
+                                        @*<div class="form-group">
+                                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                </div>*@
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
 
             <br />
             <div class="row">
-                <div class="col-md-4 col-centered" style="background-color: white; padding: 20px; ">
-                    @using (Html.BeginForm("Add", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                            @Html.HiddenFor(m => m.Title, new { Value = (string)ViewBag.movie.Title })
-                            @Html.HiddenFor(m => m.Poster, new { Value = (string)ViewBag.movie.Poster })
-                            @Html.HiddenFor(m => m.Description, new { Value = (string)ViewBag.movie.Description })
-                            @Html.HiddenFor(m => m.IMDBRating, new { Value = (string)ViewBag.movie.IMDBRating })
-                            @Html.HiddenFor(m => m.EventDate, new { Value = ViewBag.movie.EventDate })
-                            @Html.HiddenFor(m => m.IMDBLink, new { Value = (string)ViewBag.movie.IMDBLink })
-
-                            <br />
-                            @Html.TextAreaFor(m => m.Comment, 5, 47, new { @id = "comment", @placeholder = "Comment" })
-                            <br />
-                            <div class="ratinggroup" style="width: 150px; height: 50px; margin: auto;">
-                                <fieldset class="rating">
-                                    @* http://codepen.io/jamesbarnett/pen/vlpkh *@
-                                    @Html.RadioButton("Mark", "5", new { @id = "star5" })<label class="full" for="star5" title="Awesome"></label>
-                                    @Html.RadioButton("Mark", "4", new { @id = "star4" })<label class="full" for="star4" title="Pretty good"></label>
-                                    @Html.RadioButton("Mark", "3", new { @id = "star3" })<label class="full" for="star3" title="Meh"></label>
-                                    @Html.RadioButton("Mark", "2", new { @id = "star2" })<label class="full" for="star2" title="Bad"></label>
-                                    @Html.RadioButton("Mark", "1", new { @id = "star1" })<label class="full" for="star1" title="So bad"></label>
-                                </fieldset>
-                            </div>
-                            <center><input type="submit" class="btn btn-primary" value=Add /></center>
-                        }
+                <div class="col-md-8 col-centered" style="background-color: white; padding: 20px; ">
+                    
                 </div>
             </div>
         }

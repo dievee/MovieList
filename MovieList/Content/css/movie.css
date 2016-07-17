@@ -3,14 +3,19 @@
 
 .movie{
     min-height: 300px;
-    width: 400px;
+  
     background-color: aliceblue;
     padding: 10px 0 10px 10px;
 }
 
     .title{
-
+        
     }
+
+        .title h2{
+            margin: 0;
+            padding: 0 0 10px 0 ;
+        }
 
     .body{
 
@@ -18,10 +23,10 @@
     }
 
         .poster{
-            width: 100px;
+            width: 200px;
             height: auto;
             float: left;
-            margin: 10px;
+           
         }
 
             .poster img{
@@ -30,5 +35,14 @@
             }
 
         .movieinfo{
-            padding-left: 110px;
+            padding-left: 220px;
         }
+            
+            .description{
+                float: left;
+                padding-top: 20px;
+            }
+
+            .comment{
+
+            }
