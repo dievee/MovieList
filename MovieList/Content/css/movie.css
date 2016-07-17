@@ -1,7 +1,11 @@
 ﻿body {
 }
-.movie{
 
+.movie{
+    min-height: 300px;
+    width: 400px;
+    background-color: aliceblue;
+    padding: 10px 0 10px 10px;
 }
 
     .title{
@@ -17,6 +21,7 @@
             width: 100px;
             height: auto;
             float: left;
+            margin: 10px;
         }
 
             .poster img{
