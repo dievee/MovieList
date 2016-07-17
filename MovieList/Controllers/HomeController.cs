@@ -66,16 +66,14 @@ namespace MovieList.Controllers
             return "";
         }
 
-        [HttpGet]
-        public ActionResult Add()
-        {
-            return View();
-        }
 
-        [HttpGet]
-        public ActionResult Add(Movie movie)
+
+        [HttpPost]
+        public void Add(Movie movie, int Mark)
         {
-            return View();
+            
+
+            // TODO: Saving in DB here.
         }
     }
 }
