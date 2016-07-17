@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MovieList.Models;
 using System.Net;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MovieList.Controllers
 {
@@ -14,6 +12,13 @@ namespace MovieList.Controllers
         // GET: Home
         public ActionResult Index(string message = null)
         {
+            using (AppContext db = new AppContext())
+            {
+                IEnumerable<Movie> movies = db.Movies;
+                ViewBag.Movies = movies;
+                ViewBag.message = message;
+            }
+
             return View();
         }
 
@@ -51,7 +56,7 @@ namespace MovieList.Controllers
                     Description = movieFullInfo.Plot,
                     Poster = movieFullInfo.Poster,
                     IMDBRating = movieFullInfo.imdbRating,
-                    EventDate = (DateTime)movieFullInfo.Released,
+                    EventDate = movieFullInfo.Released,
                     IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
                 };
 
@@ -69,11 +74,16 @@ namespace MovieList.Controllers
 
 
         [HttpPost]
-        public void Add(Movie movie, int Mark)
+        public ActionResult Add(Movie movie, int Mark)
         {
+            using (AppContext db = new AppContext())
+            {
+                movie.Mark = Mark.ToString();
+                db.Movies.Add(movie);
+                db.SaveChanges();
+            }
 
-            RedirectToAction("Index", new { message = "Movie saved" });
-            // TODO: Saving in DB here.
+            return RedirectToAction("Index", new { message = "Movie saved" });
         }
     }
 }

@@ -4,10 +4,49 @@
     <title ng-bind="helloAngular"></title>
 </head>
 <body>
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
     <input type="text" ng-model="helloAngular" />
     <h1>{{helloAngular}}</h1>
+    <h1>@ViewBag.message</h1>
+    
+    <div class="row">
+        @foreach (var b in ViewBag.Movies)
+            {
+            <div class="notation">
+                <div class="title">
+                    <h4><a href="@b.IMDBLink" style="color: black;">@b.Title</a> </h4>
+                </div>
+                <div class="poster">
+                    <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
+                </div>
+                <div class="rating">
+                    <a>imdb:@b.IMDBRating &nbsp; &nbsp; &nbsp; Year: @b.EventDate</a>
+                    <br />
+                </div>
+                <div class="author">
+                    <a> Author </a>
+                    <br />
+                    @*<a> @b.Time</a>*@
+                    <br />
+                    @for (int i = 0; i < b.Mark; i++)
+                    {
+                        <div style="display: inline-block;">
+                            <img src="~/Content/Images/star_gold_small.png" />
+                        </div>
+                    }
+                    @for (int j = 0; j < 5 - b.Mark; j++)
+                    {
+                        <div style="display: inline-block;">
+                            <img src="~/Content/Images/star_gray_small.png" />
+                        </div>
+                    }
+                </div>
+                <div class="comment">
+                    @b.Comment
+                </div>
+            </div>
+        }
+    </div>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
 </body>
 </html>

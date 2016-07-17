@@ -12,7 +12,7 @@ namespace MovieList.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string IMDBRating { get; set; }
-        public DateTime EventDate { get; set; }
+        public string EventDate { get; set; }
         public string IMDBLink { get; set; }
         public string Comment { get; set; }
         public string Mark { get; set; }
