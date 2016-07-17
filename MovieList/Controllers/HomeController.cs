@@ -54,6 +54,8 @@ namespace MovieList.Controllers
                     EventDate = (DateTime)movieFullInfo.Released,
                     IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
                 };
+
+                ViewBag.movie = movie;
             }
 
 
