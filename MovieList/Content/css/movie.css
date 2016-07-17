@@ -1,0 +1,29 @@
+﻿body {
+}
+.movie{
+
+}
+
+    .title{
+
+    }
+
+    .body{
+
+            
+    }
+
+        .poster{
+            width: 100px;
+            height: auto;
+            float: left;
+        }
+
+            .poster img{
+                width: 100%;
+                height: auto;
+            }
+
+        .movieinfo{
+            padding-left: 110px;
+        }

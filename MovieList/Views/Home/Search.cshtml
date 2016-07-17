@@ -1,46 +1,46 @@
 ﻿@model MovieList.Models.SearchMovie
-
-<br />
-<div>
-    @if (ViewBag.movie == null)
-    {
-        using (Html.BeginForm("Search", "Home", FormMethod.Post))
+<head>
+    <link href="~/Content/css/movie.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <br />
+    <div>
+        @if (ViewBag.movie == null)
         {
-            @Html.AntiForgeryToken()
             <div>
-                <input type="text" name="movieTitle"  placeholder="Title" autocomplete="off" />
-                <input type="text" name="movieYear" placeholder="Year" autocomplete="off" />
-            </div>
-            <div>
-                <input type="submit" />
+                @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                {
+                @Html.AntiForgeryToken()
+                <div>
+                    <input type="text" name="movieTitle" placeholder="Title" autocomplete="off" />
+                    <input type="text" name="movieYear" placeholder="Year" autocomplete="off" />
+                </div>
+                <div>
+                    <input type="submit" />
+                </div>
+                }
             </div>
         }
-    }
-    else
-    {
-
-        <div class="movie">
-            <div class="title">
-                <h3><a href="@ViewBag.movie.IMDBLink">@ViewBag.movie.Title</a></h3>
-            </div>
-            <div class="body">
-                <div class="poster">
-                    <img src="@ViewBag.movie.Poster" />
+        else
+        {
+            <div class="movie">
+                <div class="title">
+                    <h4><a href="@ViewBag.movie.IMDBLink">@ViewBag.movie.Title</a></h4>
                 </div>
-                <div class="movieinfo">
-                    <div class="rating">
-                        @ViewBag.movie.EventDate  @ViewBag.movie.IMDBRating
+                <div class="body">
+                    <div class="poster">
+                        <img src="@ViewBag.movie.Poster" />
                     </div>
-                    <div class="description">
-                        @ViewBag.movie.Description
+                    <div class="movieinfo">
+                        <div class="rating">
+                            @ViewBag.movie.EventDate  @ViewBag.movie.IMDBRating
+                        </div>
+                        <div class="description">
+                            @ViewBag.movie.Description
+                        </div>
                     </div>
                 </div>
             </div>
-            
-
-
-        </div>
-        
-       
-    }
-</div>
+        }
+    </div>
+</body>
