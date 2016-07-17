@@ -2,28 +2,40 @@
 <head>
     <link href="~/Content/css/movie.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/starrating.css" rel="stylesheet" type="text/css" />
+    <style>
+        .searchform{
+            background-color: aliceblue;
+            padding: 10px;
+        }
+        .col-centered{
+            float: none;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <br />
     <div>
         @if (ViewBag.movie == null)
         {
-            <div>
-                @using (Html.BeginForm("Search", "Home", FormMethod.Post))
-                {
-                @Html.AntiForgeryToken()
-                <div>
-                    <input type="text" class="form-control" name="movieTitle" placeholder="Title" autocomplete="off" />
-                    <br />
-                    <input type="text" class="form-control" name="movieYear" placeholder="Year" autocomplete="off" />
-                    <br />
-                </div>
+                <div class="row">
+                    <div class="col-md-3 col-centered searchform">
+                        @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div>
+                                <input type="text" class="form-control" name="movieTitle" placeholder="Title" autocomplete="off" />
+                                <br />
+                                <input type="text" class="form-control" name="movieYear" placeholder="Year" autocomplete="off" />
+                                <br />
+                            </div>
 
-                <div>
-                    <button type="submit" class="btn btn-default">Search</button>
+                            <div style="text-align: center; ">
+                                <button type="submit" class="btn btn-default" >Search</button>
+                            </div>
+                        }
+                    </div>
                 </div>
-                }
-            </div>
         }
         else
         {

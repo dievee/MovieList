@@ -12,7 +12,7 @@ namespace MovieList.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(string message = null)
         {
             return View();
         }
@@ -71,8 +71,8 @@ namespace MovieList.Controllers
         [HttpPost]
         public void Add(Movie movie, int Mark)
         {
-            
 
+            RedirectToAction("Index", new { message = "Movie saved" });
             // TODO: Saving in DB here.
         }
     }
