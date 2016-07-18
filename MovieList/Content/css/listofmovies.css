@@ -1,0 +1,38 @@
+﻿
+/*Bad css, TODO: R&R this later*/
+
+.notation {
+    display: inline-block !important; width: 30% !important; min-height: 260px !important; background-color: #ffffff !important; 
+    margin: 10px !important; padding: 10px !important; vertical-align: top;
+}
+.title{
+    width: 100% ; margin-bottom: 5px ;
+}
+.title h4{
+    margin: 0 !important;
+}
+.poster{
+    width: 133px ; height: 200px;  float: left;
+}
+.poster img{
+    width: 100%; height: auto;
+}
+.rating{
+    float: right;
+}
+.author{
+     margin-top: 30px;
+ width: 200px;
+  margin-left: 140px;
+}
+.comment{
+  width: 200px;
+  margin-left: 140px;
+}
+.photo{
+    width: 64px; height: 64px; background-color: black; margin-left: 150px; float: right;
+}
+.photo img{
+    width: 100%;
+    height: auto;
+}
