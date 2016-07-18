@@ -28,13 +28,13 @@
                     <br />
                     @*<a> @b.Time</a>*@
                     <br />
-                    @for (int i = 0; i < b.Mark; i++)
+                    @for (int i = 0; i < Int32.Parse(b.Mark); i++)
                     {
                         <div style="display: inline-block;">
                             <img src="~/Content/Images/star_gold_small.png" />
                         </div>
                     }
-                    @for (int j = 0; j < 5 - b.Mark; j++)
+                    @for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
                     {
                         <div style="display: inline-block;">
                             <img src="~/Content/Images/star_gray_small.png" />

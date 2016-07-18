@@ -4,6 +4,7 @@ using MovieList.Models;
 using System.Net;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MovieList.Controllers
 {
@@ -14,7 +15,8 @@ namespace MovieList.Controllers
         {
             using (AppContext db = new AppContext())
             {
-                IEnumerable<Movie> movies = db.Movies;
+                var qw = db.Movies;
+                IEnumerable<Movie> movies = db.Movies.ToList();
                 ViewBag.Movies = movies;
                 ViewBag.message = message;
             }
