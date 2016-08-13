@@ -13,7 +13,7 @@ namespace MovieList.Controllers
         // GET: Home
         public ActionResult Index(string message = null)
         {
-            using (AppContext db = new AppContext())
+            using (ApplicationContext db = new ApplicationContext())
             {
                 var qw = db.Movies;
                 IEnumerable<Movie> movies = db.Movies.ToList();
@@ -78,7 +78,7 @@ namespace MovieList.Controllers
         [HttpPost]
         public ActionResult Add(Movie movie, int Mark)
         {
-            using (AppContext db = new AppContext())
+            using (ApplicationContext db = new ApplicationContext())
             {
                 movie.Mark = Mark.ToString();
                 db.Movies.Add(movie);

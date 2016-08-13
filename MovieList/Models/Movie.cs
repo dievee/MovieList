@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿
 
 namespace MovieList.Models
 {
@@ -16,6 +13,8 @@ namespace MovieList.Models
         public string IMDBLink { get; set; }
         public string Comment { get; set; }
         public string Mark { get; set; }
+
+        public ApplicationUser User { get; set; }
     }
 
     public class SearchMovie
