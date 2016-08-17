@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity;
+@using MovieList.Models;
+@{ 
+    int iAuthors = 0;
+}
+<!DOCTYPE html>
 <html ng-app>
 <head>
     @*<title ng-bind="helloAngular"></title>*@
@@ -9,11 +14,11 @@
     @*<input type="text" ng-model="helloAngular" />
     <h1>{{helloAngular}}</h1>*@
     
-    <h1>@ViewBag.message</h1>
+    @*<h1>@ViewBag.message</h1>*@
     
     <div class="row">
-        @foreach (var b in ViewBag.Movies)
-            {
+        @foreach (var b in ViewBag.Movies )
+        {
             <div class="notation">
                 <div class="title">
                     <h4><a href="@b.IMDBLink" style="color: black;">@b.Title</a> </h4>
@@ -22,11 +27,11 @@
                     <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
                 </div>
                 <div class="rating">
-                    <a>imdb:@b.IMDBRating &nbsp; &nbsp; &nbsp; Year: @b.EventDate</a>
+                    <a>imdb:@b.IMDBRating &nbsp; &nbsp;  Year: @b.EventDate</a>
                     <br />
                 </div>
                 <div class="author">
-                    <a> Author </a>
+                    <a> @ViewBag.Authors[@iAuthors]</a>
                     <br />
                     @*<a> @b.Time</a>*@
                     <br />
@@ -47,6 +52,8 @@
                     @b.Comment
                 </div>
             </div>
+
+            iAuthors++;
         }
     </div>
 

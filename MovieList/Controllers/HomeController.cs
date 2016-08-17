@@ -20,8 +20,19 @@ namespace MovieList.Controllers
             {
                 var qw = db.Movies;
                 IEnumerable<Movie> movies = db.Movies.ToList();
+                List<string> authors = new List<string>();
+
+                foreach(var i in movies)
+                {
+                    var authorUserName = (from users in db.Users
+                                         where users.Id.Equals(i.UserId)
+                                         select users.UserName).FirstOrDefault();
+                   
+                   authors.Add(authorUserName);
+                }
                 ViewBag.Movies = movies;
-                ViewBag.message = message;
+                ViewBag.Authors = authors;
+                ViewBag.message = message;  
             }
 
             return View();
@@ -54,9 +65,6 @@ namespace MovieList.Controllers
                 var json = wc.DownloadString(url);
 
                 dynamic movieFullInfo = JsonConvert.DeserializeObject(json);
-                //var currentUserId = User.Identity.GetUserId();
-                //ApplicationUser AppUser = new ApplicationUser();
-                //AppUser.Id = User.Identity.GetUserId();
 
                 movie = new Movie
                 {
@@ -66,7 +74,6 @@ namespace MovieList.Controllers
                     IMDBRating = movieFullInfo.imdbRating,
                     EventDate = movieFullInfo.Released,
                     IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
-                    //, User_Id = AppUser
             };
 
                 ViewBag.movie = movie;
@@ -75,46 +82,17 @@ namespace MovieList.Controllers
 
                 return View();
         }
-        public string SearchInIMDB()
-        {
-            return "";
-        }
-
-
 
         [HttpPost]
         public ActionResult Add(Movie movie, int Mark)
         {
-            ApplicationUser AppUser = new ApplicationUser();
-            AppUser.Id = User.Identity.GetUserId();
-          //  AppUser.UserName = "asfasf";
-                //User.Identity.GetUserName();
-
             using (ApplicationContext db = new ApplicationContext())
             {
-               // try
-               // {
 
                     movie.Mark = Mark.ToString();
                     movie.UserId = User.Identity.GetUserId();
-                    //     movie.User = AppUser;
                     db.Movies.Add(movie);
-
-
                     db.SaveChanges();
-             //   }
-                //catch (DbEntityValidationException dbEx)
-                //{
-                //    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                //    {
-                //        foreach (var validationError in validationErrors.ValidationErrors)
-                //        {
-                //            Trace.TraceInformation("Property: {0} Error: {1}",
-                //                                    validationError.PropertyName,
-                //                                    validationError.ErrorMessage);
-                //        }
-                //    }
-                //}
             }
 
             return RedirectToAction("Index", new { message = "Movie saved" });
