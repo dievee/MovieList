@@ -7,13 +7,13 @@ namespace MovieList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddConnectionWithMovieAndUser : IMigrationMetadata
+    public sealed partial class PreparingDb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddConnectionWithMovieAndUser));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PreparingDb));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608131752077_AddConnectionWithMovieAndUser"; }
+            get { return "201608171717218_PreparingDb"; }
         }
         
         string IMigrationMetadata.Source

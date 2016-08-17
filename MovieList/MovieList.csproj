@@ -943,13 +943,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608131741014_InitialCreate.cs" />
-    <Compile Include="Migrations\201608131741014_InitialCreate.Designer.cs">
-      <DependentUpon>201608131741014_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201608141112245_InitialCreate.cs" />
+    <Compile Include="Migrations\201608141112245_InitialCreate.Designer.cs">
+      <DependentUpon>201608141112245_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608131752077_AddConnectionWithMovieAndUser.cs" />
-    <Compile Include="Migrations\201608131752077_AddConnectionWithMovieAndUser.Designer.cs">
-      <DependentUpon>201608131752077_AddConnectionWithMovieAndUser.cs</DependentUpon>
+    <Compile Include="Migrations\201608171717218_PreparingDb.cs" />
+    <Compile Include="Migrations\201608171717218_PreparingDb.Designer.cs">
+      <DependentUpon>201608171717218_PreparingDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
@@ -994,11 +994,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608131741014_InitialCreate.resx">
-      <DependentUpon>201608131741014_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608141112245_InitialCreate.resx">
+      <DependentUpon>201608141112245_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608131752077_AddConnectionWithMovieAndUser.resx">
-      <DependentUpon>201608131752077_AddConnectionWithMovieAndUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608171717218_PreparingDb.resx">
+      <DependentUpon>201608171717218_PreparingDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

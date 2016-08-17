@@ -5,6 +5,9 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace MovieList.Controllers
 {
@@ -51,6 +54,9 @@ namespace MovieList.Controllers
                 var json = wc.DownloadString(url);
 
                 dynamic movieFullInfo = JsonConvert.DeserializeObject(json);
+                //var currentUserId = User.Identity.GetUserId();
+                //ApplicationUser AppUser = new ApplicationUser();
+                //AppUser.Id = User.Identity.GetUserId();
 
                 movie = new Movie
                 {
@@ -60,7 +66,8 @@ namespace MovieList.Controllers
                     IMDBRating = movieFullInfo.imdbRating,
                     EventDate = movieFullInfo.Released,
                     IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
-                };
+                    //, User_Id = AppUser
+            };
 
                 ViewBag.movie = movie;
             }
@@ -78,11 +85,36 @@ namespace MovieList.Controllers
         [HttpPost]
         public ActionResult Add(Movie movie, int Mark)
         {
+            ApplicationUser AppUser = new ApplicationUser();
+            AppUser.Id = User.Identity.GetUserId();
+          //  AppUser.UserName = "asfasf";
+                //User.Identity.GetUserName();
+
             using (ApplicationContext db = new ApplicationContext())
             {
-                movie.Mark = Mark.ToString();
-                db.Movies.Add(movie);
-                db.SaveChanges();
+               // try
+               // {
+
+                    movie.Mark = Mark.ToString();
+                    movie.UserId = User.Identity.GetUserId();
+                    //     movie.User = AppUser;
+                    db.Movies.Add(movie);
+
+
+                    db.SaveChanges();
+             //   }
+                //catch (DbEntityValidationException dbEx)
+                //{
+                //    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                //    {
+                //        foreach (var validationError in validationErrors.ValidationErrors)
+                //        {
+                //            Trace.TraceInformation("Property: {0} Error: {1}",
+                //                                    validationError.PropertyName,
+                //                                    validationError.ErrorMessage);
+                //        }
+                //    }
+                //}
             }
 
             return RedirectToAction("Index", new { message = "Movie saved" });
