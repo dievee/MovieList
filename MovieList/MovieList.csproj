@@ -957,6 +957,7 @@
     <Compile Include="Models\ApplicationUserManager.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Note.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

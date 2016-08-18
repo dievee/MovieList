@@ -2,6 +2,7 @@
 @using MovieList.Models;
 @{ 
     int iAuthors = 0;
+    string author = null;
 }
 <!DOCTYPE html>
 <html ng-app>
@@ -15,47 +16,62 @@
     <h1>{{helloAngular}}</h1>*@
     
     @*<h1>@ViewBag.message</h1>*@
-    
-    <div class="row">
-        @foreach (var b in ViewBag.Movies )
-        {
-            <div class="notation">
-                <div class="title">
-                    <h4><a href="@b.IMDBLink" style="color: black;">@b.Title</a> </h4>
+    @if(ViewBag.UserInfo == null)
+    { 
+        <div class="row">
+            @foreach (var b in ViewBag.Movies )
+            {
+                <div class="notation">
+                    <div class="title">
+                        <h4><a href="@b.IMDBLink" style="color: black;">@b.Title</a> </h4>
+                    </div>
+                    <div class="poster">
+                        <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
+                    </div>
+                    <div class="rating">
+                        <a>imdb:@b.IMDBRating &nbsp; &nbsp;  Year: @b.EventDate</a>
+                        <br />
+                    </div>
+                    <div class="author">
+                        <a>@b.UserId </a>
+                   
+                    
+                        @*@Html.ActionLink( "author", "Index", "Home", new { id = @b.UserId})*@
+                        @Html.ActionLink("author", "Index", new { controller = "Home" }, new { id = "sf"})
+                        @*<a> @b.Time</a>*@
+                        <br />
+                        <br />
+                        @for (int i = 0; i < Int32.Parse(b.Mark); i++)
+                        {
+                            <div style="display: inline-block;">
+                                <img src="~/Content/Images/star_gold_small.png" />
+                            </div>
+                        }
+                        @for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
+                        {
+                            <div style="display: inline-block;">
+                                <img src="~/Content/Images/star_gray_small.png" />
+                            </div>
+                        }
+                    </div>
+                    <div class="comment">
+                        @b.Comment
+                    </div>
                 </div>
-                <div class="poster">
-                    <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
-                </div>
-                <div class="rating">
-                    <a>imdb:@b.IMDBRating &nbsp; &nbsp;  Year: @b.EventDate</a>
-                    <br />
-                </div>
-                <div class="author">
-                    <a> @ViewBag.Authors[@iAuthors]</a>
-                    <br />
-                    @*<a> @b.Time</a>*@
-                    <br />
-                    @for (int i = 0; i < Int32.Parse(b.Mark); i++)
-                    {
-                        <div style="display: inline-block;">
-                            <img src="~/Content/Images/star_gold_small.png" />
-                        </div>
-                    }
-                    @for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
-                    {
-                        <div style="display: inline-block;">
-                            <img src="~/Content/Images/star_gray_small.png" />
-                        </div>
-                    }
-                </div>
-                <div class="comment">
-                    @b.Comment
-                </div>
-            </div>
 
-            iAuthors++;
-        }
-    </div>
+                iAuthors++;
+            }
+        </div>
+    }
+    else
+    {
+        <br />
+        <p>@ViewBag.UserInfo.id</p>
+        <br />
+        <p>@ViewBag.UserInfo.Email</p>
+        <br />
+        <p>@ViewBag.UserInfo.UserName</p>
+    }
 
 </body>
 </html>
