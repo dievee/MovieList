@@ -12,44 +12,41 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MovieList.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        public string s(string s, string p)  // testing omdb api
-        {
+        //public string s(string s, string p)  // testing omdb api
+        //{
+        //    string url = "http://www.omdbapi.com/?s=" + s + "&page=" + p + "&type=movie";
 
-            string url = "http://www.omdbapi.com/?s=" + s + "&page=" + p + "&type=movie";
-            Movie movie = null;
-            dynamic movieFullInfo = null;
-            using (WebClient wc = new WebClient())
-            {
-                var json = wc.DownloadString(url);
+        //    using (WebClient wc = new WebClient())
+        //    {
+        //        var json = wc.DownloadString(url);
+        //        dynamic movieFullInfo = JsonConvert.DeserializeObject(json).ToString();
 
-                movieFullInfo = JsonConvert.DeserializeObject(json).ToString();
+        //        //movie = new Movie
+        //        //{
+        //        //    Title = movieFullInfo.Title,
+        //        //    Description = movieFullInfo.Plot,
+        //        //    Poster = movieFullInfo.Poster,
+        //        //    IMDBRating = movieFullInfo.imdbRating,
+        //        //    EventDate = movieFullInfo.Released,
+        //        //    IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
+        //        //};
 
-                //movie = new Movie
-                //{
-                //    Title = movieFullInfo.Title,
-                //    Description = movieFullInfo.Plot,
-                //    Poster = movieFullInfo.Poster,
-                //    IMDBRating = movieFullInfo.imdbRating,
-                //    EventDate = movieFullInfo.Released,
-                //    IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
-                //};
+        //     //   ViewBag.movie = movie;
 
-             //   ViewBag.movie = movie;
-            }
-
-            return movieFullInfo;
-        }
+        //    return movieFullInfo;
+        //    }
+        //}
 
         // GET: Home
         public ActionResult Index(string id)
         {
             if (id == null)
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    IEnumerable<Movie> movies = db.Movies.ToList();
+                    List<Movie> movies = dal.GetMovies();
+                    //IEnumerable<Movie> movies = Ge;
+
                     //List<Note> notes = new List<Note>();
                     //foreach (var i in movies)
                     //{
@@ -71,25 +68,17 @@ namespace MovieList.Controllers
 
                     foreach (var i in movies)
                     {
-                        var authorUserName = (from users in db.Users
-                                              where users.Id.Equals(i.UserId)
-                                              select users.UserName).FirstOrDefault();
+                        var authorUserName = dal.GetAuthorOfMovie(i.UserId);
 
                         authors.Add(authorUserName);
                     }
                     ViewBag.Movies = movies;
                     ViewBag.Authors = authors;
-                }
             }
             else
             {
-                using (ApplicationContext db = new ApplicationContext())
-                {
-                    IEnumerable<ApplicationUser> userInfo = (from u in db.AppUsers
-                                                             where u.Id.Equals(User.Identity.GetUserId())
-                                                             select u);
-                    ViewBag.UserInfo = userInfo; 
-                }
+                    //ApplicationUser user = dal.GetUserInfo(User.Identity.GetUserId());
+                    //ViewBag.User = user; 
             }
             
 
@@ -144,14 +133,9 @@ namespace MovieList.Controllers
         [HttpPost]
         public ActionResult Add(Movie movie, int Mark)
         {
-            using (ApplicationContext db = new ApplicationContext())
-            {
-
-                    movie.Mark = Mark.ToString();
-                    movie.UserId = User.Identity.GetUserId();
-                    db.Movies.Add(movie);
-                    db.SaveChanges();
-            }
+            movie.Mark = Mark.ToString();
+            movie.UserId = User.Identity.GetUserId();
+            dal.AddMovie(movie);
 
             return RedirectToAction("Index");
         }

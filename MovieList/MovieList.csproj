@@ -939,10 +939,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\DALManager.cs" />
     <Compile Include="Migrations\201608141112245_InitialCreate.cs" />
     <Compile Include="Migrations\201608141112245_InitialCreate.Designer.cs">
       <DependentUpon>201608141112245_InitialCreate.cs</DependentUpon>
@@ -1001,6 +1003,9 @@
     <EmbeddedResource Include="Migrations\201608171717218_PreparingDb.resx">
       <DependentUpon>201608171717218_PreparingDb.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

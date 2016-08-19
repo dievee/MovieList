@@ -8,7 +8,7 @@ namespace MovieList.Models
         public ApplicationContext() : base("AppContext") { }
 
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<ApplicationUser> AppUsers { get; set; }
+      //  public DbSet<ApplicationUser> AppUsers { get; set; }
 
         public static ApplicationContext Create()
         {
