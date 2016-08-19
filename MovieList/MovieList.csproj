@@ -961,6 +961,7 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

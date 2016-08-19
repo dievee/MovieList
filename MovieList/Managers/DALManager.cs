@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using MovieList.Models;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace MovieList.Managers
             return query.ToList();
         }
 
-        public string GetAuthorOfMovie(string id)
+        public string GetUserName(string id)
         {
             var query = (from users in db.Users
                                   where users.Id.Equals(id)
@@ -33,14 +34,14 @@ namespace MovieList.Managers
             return query;
         }
 
-        //public ApplicationUser GetUserInfo(string id)
-        //{
-        //    var query = (from u in db.AppUsers
-        //                 where u.Id.Equals(id)
-        //                 select u);
+        public ApplicationUser GetUserInfo(string id)
+        {
+            var query = (from u in db.Users
+                         where u.Id.Equals(id)
+                         select u);
 
-        //    return query.FirstOrDefault() as ApplicationUser;
-        //}
+            return query.FirstOrDefault() as ApplicationUser;
+        }
 
         public void AddMovie(Movie movie)
         {

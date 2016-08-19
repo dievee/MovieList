@@ -7,16 +7,15 @@
 <!DOCTYPE html>
 <html ng-app>
 <head>
-    @*<title ng-bind="helloAngular"></title>*@
+
     <link href="~/Content/css/listofmovies.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
     @*<input type="text" ng-model="helloAngular" />
     <h1>{{helloAngular}}</h1>*@
-    
-    @*<h1>@ViewBag.message</h1>*@
-    @if(ViewBag.UserInfo == null)
+
+    @if(ViewBag.User == null)
     { 
         <div class="row">
             @foreach (var b in ViewBag.Movies )
@@ -34,9 +33,6 @@
                     </div>
                     <div class="author">
                         <a>@b.UserId </a>
-                   
-                    
-                        @*@Html.ActionLink( "author", "Index", "Home", new { id = @b.UserId})*@
                         @Html.ActionLink("author", "Index", new { controller = "Home" }, new { id = "sf"})
                         @*<a> @b.Time</a>*@
                         <br />
@@ -66,11 +62,11 @@
     else
     {
         <br />
-        <p>@ViewBag.UserInfo.id</p>
+        <p>@ViewBag.User.Id</p>
         <br />
-        <p>@ViewBag.UserInfo.Email</p>
+        <p>@ViewBag.User.Email</p>
         <br />
-        <p>@ViewBag.UserInfo.UserName</p>
+        <p>@ViewBag.User.UserName</p>
     }
 
 </body>

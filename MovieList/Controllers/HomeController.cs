@@ -45,44 +45,26 @@ namespace MovieList.Controllers
             if (id == null)
             {
                     List<Movie> movies = dal.GetMovies();
-                    //IEnumerable<Movie> movies = Ge;
-
-                    //List<Note> notes = new List<Note>();
-                    //foreach (var i in movies)
-                    //{
-                    //    Note note = new Note();
-                    //    note.Comment = i.Comment;
-                    //    note.Description = i.Description;
-                    //    note.EventDate = i.EventDate;
-                    //    note.IMDBLink = i.IMDBLink;
-                    //    note.IMDBRating = i.IMDBRating;
-                    //    note.Mark = i.Mark;
-                    //    note.MovieId = i.MovieId;
-                    //    note.Poster = i.Poster;
-                    //    note.Title = i.Title;
-
-                    //    notes.Add(note);
-                    //}
-
                     List<string> authors = new List<string>();
 
                     foreach (var i in movies)
                     {
-                        var authorUserName = dal.GetAuthorOfMovie(i.UserId);
-
-                        authors.Add(authorUserName);
+                        authors.Add(dal.GetUserName(i.UserId));
                     }
                     ViewBag.Movies = movies;
                     ViewBag.Authors = authors;
+
+                return View();
             }
             else
             {
-                    //ApplicationUser user = dal.GetUserInfo(User.Identity.GetUserId());
-                    //ViewBag.User = user; 
-            }
-            
+                ApplicationUser user = dal.GetUserInfo(id);
 
-            return View();
+                //ViewBag.UserName = user.UserName;
+                ViewBag.User = user;
+
+                return View();
+            }  
         }
 
         [HttpGet]

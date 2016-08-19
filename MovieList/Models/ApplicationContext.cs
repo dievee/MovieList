@@ -5,7 +5,10 @@ namespace MovieList.Models
 {
     public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationContext() : base("AppContext") { }
+        public ApplicationContext() : base("AppContext")
+        {
+            //this.Configuration.ProxyCreationEnabled = false;
+        }
 
         public DbSet<Movie> Movies { get; set; }
       //  public DbSet<ApplicationUser> AppUsers { get; set; }
