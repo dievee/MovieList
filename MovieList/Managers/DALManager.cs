@@ -17,12 +17,21 @@ namespace MovieList.Managers
             db.SaveChanges();
         }
 
-        public List<Movie> GetMovies()
+        public List<Movie> GetMovies(string id = null)
         {
-            var query = from movies in db.Movies
-                        select movies;
-
-            return query.ToList();
+            if (id == null)
+            {
+                var query = from movies in db.Movies
+                            select movies;
+                return query.ToList();
+            }
+            else
+            {
+                var query = (from movies in db.Movies
+                            where movies.UserId == id
+                            select movies);
+                return query.ToList();
+            }
         }
 
         public string GetUserName(string id)

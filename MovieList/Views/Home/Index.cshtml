@@ -9,12 +9,19 @@
 <head>
 
     <link href="~/Content/css/listofmovies.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/UserProfile.css" rel="stylesheet" type="text/css" />
+    <style>
+        .col-centered{
+            float: none;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
     @*<input type="text" ng-model="helloAngular" />
     <h1>{{helloAngular}}</h1>*@
-
+    <h3>@User.Identity.GetUserId()</h3>
     @if(ViewBag.User == null)
     { 
         <div class="row">
@@ -32,8 +39,8 @@
                         <br />
                     </div>
                     <div class="author">
-                        <a>@b.UserId </a>
-                        @Html.ActionLink("author", "Index", new { controller = "Home" }, new { id = "sf"})
+                        <a> @ViewBag.Authors[iAuthors] </a>
+                
                         @*<a> @b.Time</a>*@
                         <br />
                         <br />
@@ -61,12 +68,19 @@
     }
     else
     {
-        <br />
-        <p>@ViewBag.User.Id</p>
-        <br />
-        <p>@ViewBag.User.Email</p>
-        <br />
-        <p>@ViewBag.User.UserName</p>
+        <div class="row">
+            <div class="col-md-11 col-centered profile">
+                 <div class="photo">
+                     <img src="http://img1.reactor.cc/pics/post/Dota-zoidberg-Leviathan-the-Tidehunter-609169.jpeg" />
+                 </div>
+                 <div class="info">
+                     <p>@ViewBag.User.Id</p>
+                     <p>@ViewBag.User.Email</p>
+                     <p>@ViewBag.User.UserName</p>
+                 </div>
+            </div>
+        </div>
+
     }
 
 </body>

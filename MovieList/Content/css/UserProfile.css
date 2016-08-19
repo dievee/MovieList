@@ -1,0 +1,22 @@
+﻿.profile{
+    min-height: 200px;
+    padding: 15px;
+}
+.photo{
+    width: 250px;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+.photo img{
+    width: 250px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+.info{
+    
+}
+.info p{
+    margin: 0 0 0 270px;
+}

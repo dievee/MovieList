@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -19,7 +20,7 @@
                 </button>
                 @Html.ActionLink("Movie List", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
-                
+                @Html.ActionLink("Add Movie", "Search", "Home", new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -27,7 +28,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>  
-                                <b style="color: white;" >@User.Identity.Name </b> 
+                                @Html.ActionLink( @User.Identity.Name, "Index", "Home", new { @class = "navbar-brand", id = User.Identity.GetUserId() }, null)
                             </li>
                             <li>
                                 @Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })

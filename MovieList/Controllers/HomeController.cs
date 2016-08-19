@@ -44,27 +44,32 @@ namespace MovieList.Controllers
         {
             if (id == null)
             {
-                    List<Movie> movies = dal.GetMovies();
-                    List<string> authors = new List<string>();
-
-                    foreach (var i in movies)
-                    {
-                        authors.Add(dal.GetUserName(i.UserId));
-                    }
-                    ViewBag.Movies = movies;
-                    ViewBag.Authors = authors;
-
-                return View();
+                 List<Movie> movies = dal.GetMovies();
+                 List<string> authors = new List<string>();
+ 
+                 foreach (var i in movies)
+                 {
+                     authors.Add(dal.GetUserName(i.UserId));
+                 }
+                 ViewBag.Movies = movies;
+                 ViewBag.Authors = authors;
             }
             else
             {
-                ApplicationUser user = dal.GetUserInfo(id);
+                if (id == User.Identity.GetUserId())
+                { 
+                    ApplicationUser user = dal.GetUserInfo(id);
+                    ViewBag.User = user;
+                }
+                else
+                {
+                    //TODO: Create data for showing foreign profile
+                    ApplicationUser user = dal.GetUserInfo(id);
+                    ViewBag.User = user;
+                }
+            }
 
-                //ViewBag.UserName = user.UserName;
-                ViewBag.User = user;
-
-                return View();
-            }  
+            return View();
         }
 
         [HttpGet]
