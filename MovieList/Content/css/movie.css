@@ -21,11 +21,13 @@
 
             
     }
-
+        .rating a{
+            float: left;
+        }
         .poster{
             width: 200px;
             height: auto;
-            float: left;
+            
            
         }
 

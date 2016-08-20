@@ -20,7 +20,7 @@
                 </button>
                 @Html.ActionLink("Movie List", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
-                @Html.ActionLink("Add Movie", "Search", "Home", new { @class = "navbar-brand" })
+                @Html.ActionLink("Add Movie", "Search", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -28,7 +28,7 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li>  
-                                @Html.ActionLink( @User.Identity.Name, "Index", "Home", new { @class = "navbar-brand", id = User.Identity.GetUserId() }, null)
+                                @Html.ActionLink( @User.Identity.Name, "Index", "Home",  new { @class = "navbar-brand", id = User.Identity.GetUserId() }, null)
                             </li>
                             <li>
                                 @Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })

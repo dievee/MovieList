@@ -29,16 +29,15 @@
             {
                 <div class="notation">
                     <div class="title">
-                        <h4><a href="@b.IMDBLink" style="color: black;">@b.Title</a> </h4>
+                        <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
                     </div>
                     <div class="poster">
                         <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
                     </div>
-                    <div class="rating">
-                        <a>imdb:@b.IMDBRating &nbsp; &nbsp;  Year: @b.EventDate</a>
-                        <br />
-                    </div>
+
                     <div class="author">
+                        <a>imdb:@b.IMDBRating</a>
+                        <br />
                         <a> @ViewBag.Authors[iAuthors] </a>
                 
                         @*<a> @b.Time</a>*@
@@ -79,6 +78,43 @@
                      <p>@ViewBag.User.UserName</p>
                  </div>
             </div>
+        </div>
+        <h3>My movies</h3>
+        <div class="row">
+            @foreach (var b in ViewBag.Movies)
+            {
+                <div class="notation">
+                    <div class="title">
+                        <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
+                    </div>
+                    <div class="poster">
+                        <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
+                    </div>
+                    
+                    <div class="author">
+                            <a>imdb:@b.IMDBRating</a>
+
+                        @*<a> @b.Time</a>*@
+                        <br />
+                        <br />
+                        @for (int i = 0; i < Int32.Parse(b.Mark); i++)
+                        {
+                            <div style="display: inline-block;">
+                                <img src="~/Content/Images/star_gold_small.png" />
+                            </div>
+                        }
+                        @for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
+                        {
+                            <div style="display: inline-block;">
+                                <img src="~/Content/Images/star_gray_small.png" />
+                            </div>
+                        }
+                    </div>
+                    <div class="comment">
+                        @b.Comment
+                    </div>
+                </div>
+            }
         </div>
 
     }

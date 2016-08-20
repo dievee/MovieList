@@ -52,6 +52,15 @@ namespace MovieList.Managers
             return query.FirstOrDefault() as ApplicationUser;
         }
 
+        public int GetCountOfMovies(string id)
+        {
+            var query = (from movies in db.Movies
+                         where movies.UserId.Equals(id)
+                         select movies).Count();
+
+            return query;
+        }
+
         public void AddMovie(Movie movie)
         {
             db.Movies.Add(movie);

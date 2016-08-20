@@ -6,9 +6,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Identity;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MovieList.Controllers
 {
@@ -59,13 +56,15 @@ namespace MovieList.Controllers
                 if (id == User.Identity.GetUserId())
                 { 
                     ApplicationUser user = dal.GetUserInfo(id);
+                    List<Movie> movies = dal.GetMovies(id);
                     ViewBag.User = user;
+                    ViewBag.Movies = movies;
                 }
                 else
                 {
                     //TODO: Create data for showing foreign profile
-                    ApplicationUser user = dal.GetUserInfo(id);
-                    ViewBag.User = user;
+                   // ApplicationUser user = dal.GetUserInfo(id);
+                 //   ViewBag.User = user;
                 }
             }
 
@@ -106,7 +105,7 @@ namespace MovieList.Controllers
                     Description = movieFullInfo.Plot,
                     Poster = movieFullInfo.Poster,
                     IMDBRating = movieFullInfo.imdbRating,
-                    EventDate = movieFullInfo.Released,
+                    EventDate = movieFullInfo.Year,
                     IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
                 };
 

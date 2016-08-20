@@ -146,6 +146,7 @@
     <Content Include="Content\css\listofmovies.css" />
     <Content Include="Content\css\movie.css" />
     <Content Include="Content\css\starrating.css" />
+    <Content Include="Content\css\UserProfile.css" />
     <Content Include="Content\Images\stars.png" />
     <Content Include="Content\Images\star_gold.png" />
     <Content Include="Content\Images\star_gold_small.png" />
