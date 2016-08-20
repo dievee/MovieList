@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Web.Mvc;
-using MovieList.Models;
 using System.Net;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Identity;
+using MovieList.Models;
+using MovieList.Models.JsonModels;
 
 namespace MovieList.Controllers
 {
@@ -82,12 +83,10 @@ namespace MovieList.Controllers
             String[] titleWords = movieTitle.Split(new Char[] { ' ', '.', ',', '!', '?', ':' });
 
             string formattedTitle = null;
-            Movie movie = null;
+            Movie movie;
 
             foreach (string i in titleWords)
-            {
                 formattedTitle += "+" + i;
-            }
 
             string url = "http://www.omdbapi.com/?t=" + formattedTitle + "&y=";
 
@@ -96,24 +95,66 @@ namespace MovieList.Controllers
             using (WebClient wc = new WebClient())
             {
                 var json = wc.DownloadString(url);
-
                 dynamic movieFullInfo = JsonConvert.DeserializeObject(json);
-
-                movie = new Movie
+                bool status = movieFullInfo.Response;
+                if (!status)
                 {
-                    Title = movieFullInfo.Title,
-                    Description = movieFullInfo.Plot,
-                    Poster = movieFullInfo.Poster,
-                    IMDBRating = movieFullInfo.imdbRating,
-                    EventDate = movieFullInfo.Year,
-                    IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
-                };
-
-                ViewBag.movie = movie;
+                    string message = movieFullInfo.Error;
+                    ViewBag.Message = message;
+                }
+                else
+                {
+                    movie = new Movie
+                    {
+                        Title = movieFullInfo.Title,
+                        Description = movieFullInfo.Plot,
+                        Poster = movieFullInfo.Poster,
+                        IMDBRating = movieFullInfo.imdbRating,
+                        EventDate = movieFullInfo.Year,
+                        IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
+                    };
+                    ViewBag.movie = movie;
+                }
             }
 
+            return View();
+        }
 
-                return View();
+        [HttpGet]
+        public ActionResult AdvancedSearch()
+        {
+            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdvancedSearch(string movieTitle, string movieYear, string type)  // search by s attribute
+        {
+            Movie movie;
+            List<Movie> movies = new List<Movie>();
+            string url = String.Format("http://www.omdbapi.com/?s={0}&page={1}&y={2}&type={3}", movieTitle, "1", movieYear, type);
+            
+            using (WebClient wc = new WebClient())
+            {
+                var json = wc.DownloadString(url);
+                Movies movieFullInfo = JsonConvert.DeserializeObject<Movies>(json);
+
+                foreach (var m in movieFullInfo.Search)
+                {
+                    movie = new Movie
+                    {
+                        Title = m.Title,
+                        Poster = m.Poster,
+                        EventDate = m.Year,
+                        IMDBLink = "http://www.imdb.com/title/" + m.imdbID + "/"
+                    };
+                    movies.Add(movie);
+                }
+
+                ViewBag.Movies = movies;
+            }
+
+            return View();
         }
 
         [HttpPost]
