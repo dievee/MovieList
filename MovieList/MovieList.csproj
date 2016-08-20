@@ -946,21 +946,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Managers\DALManager.cs" />
-    <Compile Include="Migrations\201608141112245_InitialCreate.cs" />
-    <Compile Include="Migrations\201608141112245_InitialCreate.Designer.cs">
-      <DependentUpon>201608141112245_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201608171717218_PreparingDb.cs" />
-    <Compile Include="Migrations\201608171717218_PreparingDb.Designer.cs">
-      <DependentUpon>201608171717218_PreparingDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ApplicationUserManager.cs" />
     <Compile Include="Models\JsonModels\Movies.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieFull.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -998,14 +990,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608141112245_InitialCreate.resx">
-      <DependentUpon>201608141112245_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201608171717218_PreparingDb.resx">
-      <DependentUpon>201608171717218_PreparingDb.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />

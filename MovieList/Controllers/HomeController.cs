@@ -12,34 +12,11 @@ namespace MovieList.Controllers
 {
     public class HomeController : BaseController
     {
-        //public string s(string s, string p)  // testing omdb api
-        //{
-        //    string url = "http://www.omdbapi.com/?s=" + s + "&page=" + p + "&type=movie";
-
-        //    using (WebClient wc = new WebClient())
-        //    {
-        //        var json = wc.DownloadString(url);
-        //        dynamic movieFullInfo = JsonConvert.DeserializeObject(json).ToString();
-
-        //        //movie = new Movie
-        //        //{
-        //        //    Title = movieFullInfo.Title,
-        //        //    Description = movieFullInfo.Plot,
-        //        //    Poster = movieFullInfo.Poster,
-        //        //    IMDBRating = movieFullInfo.imdbRating,
-        //        //    EventDate = movieFullInfo.Released,
-        //        //    IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
-        //        //};
-
-        //     //   ViewBag.movie = movie;
-
-        //    return movieFullInfo;
-        //    }
-        //}
 
         // GET: Home
         public ActionResult Index(string id)
         {
+           dal.GetMoviesFull();
             if (id == null)
             {
                  List<Movie> movies = dal.GetMovies();

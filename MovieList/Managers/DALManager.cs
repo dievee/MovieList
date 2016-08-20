@@ -34,6 +34,36 @@ namespace MovieList.Managers
             }
         }
 
+        public List<Movie> GetMoviesFull(string id = null)  // TODO: finish join query
+        {
+            if (id == null)
+            {
+                var query = (from movies in db.Movies
+                             join users in db.Users on movies.UserId equals users.Id
+                            select new { movies, users.UserName });
+                foreach(var i in query)
+                {
+                    i.GetType();
+                }
+                query.ToList();
+                foreach (var i in query)
+                {
+                    i.GetType();
+                }
+                return null;
+                // return query.ToList();
+            }
+            else
+            {
+                var query = (from movies in db.Movies
+                             where movies.UserId == id
+                             join users in db.Users on movies.UserId equals users.Id
+                             select new { movies, users.UserName });
+                return null;
+                //return query.ToList();
+            }
+        }
+
         public string GetUserName(string id)
         {
             var query = (from users in db.Users
