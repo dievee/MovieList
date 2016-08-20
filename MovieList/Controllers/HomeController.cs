@@ -141,14 +141,17 @@ namespace MovieList.Controllers
 
                 foreach (var m in movieFullInfo.Search)
                 {
-                    movie = new Movie
-                    {
-                        Title = m.Title,
-                        Poster = m.Poster,
-                        EventDate = m.Year,
-                        IMDBLink = "http://www.imdb.com/title/" + m.imdbID + "/"
-                    };
-                    movies.Add(movie);
+                    if (m.Poster != "N/A")
+                    { 
+                        movie = new Movie
+                        {
+                            Title = m.Title,
+                            Poster = m.Poster,
+                            EventDate = m.Year,
+                            IMDBLink = "http://www.imdb.com/title/" + m.imdbID + "/"
+                        };
+                        movies.Add(movie);
+                    }
                 }
 
                 ViewBag.Movies = movies;

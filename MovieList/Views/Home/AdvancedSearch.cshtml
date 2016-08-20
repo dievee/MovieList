@@ -51,8 +51,8 @@
             @foreach (var b in ViewBag.Movies)
             {
 
-                <div class="movie" style="display: inline-block; float: left;">
-                    <div class="title" style="width: 150px;">
+                <div class="movie" style="display: inline-block; float: left; background-color: white;">
+                    <div class="title" style="width: 150px; height: 70px; display:table-cell; vertical-align:bottom;">
                         <h5><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h5>
                     </div>
                     <div class="poster" style="width: 150px;">
