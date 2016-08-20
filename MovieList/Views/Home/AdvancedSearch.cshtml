@@ -4,6 +4,7 @@
     types.Add(new SelectListItem() { Text = "Movie" });
     types.Add(new SelectListItem() { Text = "Series" });
     types.Add(new SelectListItem() { Text = "Episode" });
+    int i = 0;
 }
 <head>
     <link href="~/Content/css/movie.css" rel="stylesheet" type="text/css" />
@@ -49,14 +50,16 @@
         <div class="row">
             @foreach (var b in ViewBag.Movies)
             {
-                <div class="notation">
-                    <div class="title">
-                        <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
+
+                <div class="movie" style="display: inline-block; float: left;">
+                    <div class="title" style="width: 150px;">
+                        <h5><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h5>
                     </div>
-                    <div class="poster">
+                    <div class="poster" style="width: 150px;">
                         <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
                     </div>
                 </div>
+                i++;
             }
         </div>
     }
