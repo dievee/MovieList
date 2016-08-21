@@ -18,6 +18,20 @@
             float: none;
             margin: 0 auto;
         }
+
+        .demoizo {
+            display: block;
+            text-align: center;
+         }
+
+        .demoizo:hover, .demoizo:focus, .demoizo:active {
+            background: url(https://image.freepik.com/free-icon/_318-8371.jpg) no-repeat 50% 50%;
+         }
+
+        .demoizo:hover img, .demoizo:focus img, .demoizo:active img  {
+            background: transparent;
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +70,7 @@
                         <h5><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h5>
                     </div>
                     <div class="poster" style="width: 150px;">
-                        <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
+                        <a href="@Url.Action("Search", "Home", new { @IMDBLink = b.IMDBLink })" class="demoizo"><img src="@b.Poster" /></a>  @*data-form-method="post" - attribute of <a> tag ||  if need to call post method *@ 
                     </div>
                 </div>
                 i++;

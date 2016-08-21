@@ -50,8 +50,33 @@ namespace MovieList.Controllers
         }
 
         [HttpGet]
-        public ActionResult Search()
+        public ActionResult Search(string IMDBLink)
         {
+            if (IMDBLink != null)
+            {
+                Movie movie;
+
+                string id = prs.GetMovieIdFromLink(IMDBLink);
+                string url = "http://www.omdbapi.com/?i=" + id + "&plot=short&r=json";
+
+                using (WebClient wc = new WebClient())
+                {
+                    var json = wc.DownloadString(url);
+                    dynamic movieFullInfo = JsonConvert.DeserializeObject(json);
+                    bool status = movieFullInfo.Response;
+
+                    movie = new Movie
+                    {
+                        Title = movieFullInfo.Title,
+                        Description = movieFullInfo.Plot,
+                        Poster = movieFullInfo.Poster,
+                        IMDBRating = movieFullInfo.imdbRating,
+                        EventDate = movieFullInfo.Year,
+                        IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
+                    };
+                    ViewBag.movie = movie;
+                }
+            }
             return View();
         }
         [HttpPost]

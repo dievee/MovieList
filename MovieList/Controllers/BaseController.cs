@@ -5,5 +5,7 @@ namespace MovieList.Controllers
     public class BaseController : Controller
     {
         protected DALManager dal = new DALManager();
+
+        protected ParseManager prs = new ParseManager();
     }
 }
