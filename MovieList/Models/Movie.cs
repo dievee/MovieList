@@ -2,7 +2,7 @@
 
 namespace MovieList.Models
 {
-    public class Movie
+    public class Movie : MovieFull
     {
         public int MovieId { get; set; }
         public string Poster { get; set; }

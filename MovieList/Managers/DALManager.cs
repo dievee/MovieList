@@ -42,31 +42,39 @@ namespace MovieList.Managers
 
         public List<Movie> GetMoviesFull(string id = null)  // TODO: finish join query
         {
+            Movie movie;
+            List<Movie> movies = new List<Movie>();
             if (id == null)
             {
-                var query = (from movies in db.Movies
-                             join users in db.Users on movies.UserId equals users.Id
-                            select new { movies, users.UserName });
+                var query = (from moviesdb in db.Movies
+                             join users in db.Users on moviesdb.UserId equals users.Id
+                            select new { moviesdb, users.UserName });
                 foreach(var i in query)
                 {
-                    i.GetType();
+                    movie =  i.moviesdb ;
+                    movie.UserName = i.UserName;
+
+                    movies.Add(movie);
                 }
-                query.ToList();
-                foreach (var i in query)
-                {
-                    i.GetType();
-                }
-                return null;
+
+                return movies;
                 // return query.ToList();
             }
             else
             {
-                var query = (from movies in db.Movies
-                             where movies.UserId == id
-                             join users in db.Users on movies.UserId equals users.Id
-                             select new { movies, users.UserName });
-                return null;
-                //return query.ToList();
+                var query = (from moviesdb in db.Movies
+                             where moviesdb.UserId == id
+                             join users in db.Users on moviesdb.UserId equals users.Id
+                             select new { moviesdb, users.UserName });
+                foreach (var i in query)
+                {
+                    movie = i.moviesdb;
+                    movie.UserName = i.UserName;
+
+                    movies.Add(movie);
+                }
+
+                return movies;
             }
         }
 

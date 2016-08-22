@@ -2,9 +2,10 @@
 
 namespace MovieList.Models
 {
-    [NotMapped]
-    public class MovieFull : Movie
+    
+    public class MovieFull 
     {
-        //public string UserName {get; set;}
+        [NotMapped]
+        public string UserName {get; set;}
     }
 }
