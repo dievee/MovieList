@@ -7,5 +7,8 @@ namespace MovieList.Models
     {
         [NotMapped]
         public string UserName {get; set;}
+
+        [NotMapped]
+        public string Error { get; set; }
     }
 }

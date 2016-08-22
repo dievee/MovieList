@@ -46,70 +46,18 @@ namespace MovieList.Controllers
         {
             if (IMDBLink != null)
             {
-                Movie movie;
-
                 string id = prs.GetMovieIdFromLink(IMDBLink);
-                string url = "http://www.omdbapi.com/?i=" + id + "&plot=short&r=json";
+                Movie movie = imdb.GetMovieById(id);
+                ViewBag.movie = movie;
+             }
 
-                using (WebClient wc = new WebClient())
-                {
-                    var json = wc.DownloadString(url);
-                    dynamic movieFullInfo = JsonConvert.DeserializeObject(json);
-                    bool status = movieFullInfo.Response;
-
-                    movie = new Movie
-                    {
-                        Title = movieFullInfo.Title,
-                        Description = movieFullInfo.Plot,
-                        Poster = movieFullInfo.Poster,
-                        IMDBRating = movieFullInfo.imdbRating,
-                        EventDate = movieFullInfo.Year,
-                        IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
-                    };
-                    ViewBag.movie = movie;
-                }
-            }
             return View();
         }
         [HttpPost]
         public ActionResult Search(string movieTitle, string movieYear)  //SearchMovie smovie
         {
-            String[] titleWords = movieTitle.Split(new Char[] { ' ', '.', ',', '!', '?', ':' });
-
-            string formattedTitle = null;
-            Movie movie;
-
-            foreach (string i in titleWords)
-                formattedTitle += "+" + i;
-
-            string url = "http://www.omdbapi.com/?t=" + formattedTitle + "&y=";
-
-            if (movieYear != null) url += movieYear;
-
-            using (WebClient wc = new WebClient())
-            {
-                var json = wc.DownloadString(url);
-                dynamic movieFullInfo = JsonConvert.DeserializeObject(json);
-                bool status = movieFullInfo.Response;
-                if (!status)
-                {
-                    string message = movieFullInfo.Error;
-                    ViewBag.Message = message;
-                }
-                else
-                {
-                    movie = new Movie
-                    {
-                        Title = movieFullInfo.Title,
-                        Description = movieFullInfo.Plot,
-                        Poster = movieFullInfo.Poster,
-                        IMDBRating = movieFullInfo.imdbRating,
-                        EventDate = movieFullInfo.Year,
-                        IMDBLink = "http://www.imdb.com/title/" + movieFullInfo.imdbID + "/"
-                    };
-                    ViewBag.movie = movie;
-                }
-            }
+            Movie movie = imdb.GetMovie(movieTitle, movieYear);
+            ViewBag.Movie = movie;
 
             return View();
         }
@@ -124,33 +72,9 @@ namespace MovieList.Controllers
         [HttpPost]
         public ActionResult AdvancedSearch(string movieTitle, string movieYear, string type)  // search by s attribute
         {
-            Movie movie;
-            List<Movie> movies = new List<Movie>();
-            string url = String.Format("http://www.omdbapi.com/?s={0}&page={1}&y={2}&type={3}", movieTitle, "1", movieYear, type);
+            List<Movie> movies = imdb.GetMoviesByAdvancedSearch(movieTitle, movieYear, type); // TODO: Add Error message to list if errror
+            ViewBag.Movies = movies;
             
-            using (WebClient wc = new WebClient())
-            {
-                var json = wc.DownloadString(url);
-                Movies movieFullInfo = JsonConvert.DeserializeObject<Movies>(json);
-
-                foreach (var m in movieFullInfo.Search)
-                {
-                    if (m.Poster != "N/A")
-                    { 
-                        movie = new Movie
-                        {
-                            Title = m.Title,
-                            Poster = m.Poster,
-                            EventDate = m.Year,
-                            IMDBLink = "http://www.imdb.com/title/" + m.imdbID + "/"
-                        };
-                        movies.Add(movie);
-                    }
-                }
-
-                ViewBag.Movies = movies;
-            }
-
             return View();
         }
 

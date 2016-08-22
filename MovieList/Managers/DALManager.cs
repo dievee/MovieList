@@ -17,12 +17,6 @@ namespace MovieList.Managers
             db.SaveChanges();
         }
 
-        //public Movie GetMovieByIMDBId(string id)
-        //{
-
-        //    return null;
-        //}
-
         public List<Movie> GetMovies(string id = null)
         {
             if (id == null)

@@ -7,5 +7,7 @@ namespace MovieList.Controllers
         protected DALManager dal = new DALManager();
 
         protected ParseManager prs = new ParseManager();
+
+        protected IMDBManager imdb = new IMDBManager();
     }
 }
