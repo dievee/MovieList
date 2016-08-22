@@ -16,18 +16,10 @@ namespace MovieList.Controllers
         // GET: Home
         public ActionResult Index(string id)
         {
-           dal.GetMoviesFull();
             if (id == null)
             {
-                 List<Movie> movies = dal.GetMovies();
-                 List<string> authors = new List<string>();
- 
-                 foreach (var i in movies)
-                 {
-                     authors.Add(dal.GetUserName(i.UserId));
-                 }
+                 List<Movie> movies = dal.GetMoviesFull();
                  ViewBag.Movies = movies;
-                 ViewBag.Authors = authors;
             }
             else
             {

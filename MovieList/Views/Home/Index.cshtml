@@ -1,9 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity;
 @using MovieList.Models;
-@{ 
-    int iAuthors = 0;
-    string author = null;
-}
 <!DOCTYPE html>
 <html ng-app>
 <head>
@@ -38,7 +34,7 @@
                     <div class="author">
                         <a>imdb:@b.IMDBRating</a>
                         <br />
-                        <a> @ViewBag.Authors[iAuthors] </a>
+                        <a> @b.UserName </a>
                 
                         @*<a> @b.Time</a>*@
                         <br />
@@ -60,8 +56,6 @@
                         @b.Comment
                     </div>
                 </div>
-
-                iAuthors++;
             }
         </div>
     }
