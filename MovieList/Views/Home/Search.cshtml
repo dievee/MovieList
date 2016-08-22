@@ -16,13 +16,14 @@
 <body>
     <br />
     <div>
+        @Html.ActionLink("Try an advanced search", "AdvancedSearch")
         @if (ViewBag.movie == null)
         {
             if (ViewBag.Message == "Movie not found!")
             {
                 @ViewBag.Message
                 <br />
-                @Html.ActionLink("Try an advanced search", "AdvancedSearch")
+                
             }
                 <div class="row">
                     <div class="col-md-3 col-centered searchform">

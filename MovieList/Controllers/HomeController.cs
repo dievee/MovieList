@@ -1,12 +1,8 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Net;
-using Newtonsoft.Json;
+﻿using System.Web.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNet.Identity;
 using MovieList.Models;
-using MovieList.Models.JsonModels;
+using System;
 
 namespace MovieList.Controllers
 {
@@ -83,6 +79,7 @@ namespace MovieList.Controllers
         {
             movie.Mark = Mark.ToString();
             movie.UserId = User.Identity.GetUserId();
+            movie.NotedDate = DateTime.Now.Date;
             dal.AddMovie(movie);
 
             return RedirectToAction("Index");

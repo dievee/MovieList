@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 
 namespace MovieList.Models
 {
@@ -13,7 +13,7 @@ namespace MovieList.Models
         public string IMDBLink { get; set; }
         public string Comment { get; set; }
         public string Mark { get; set; }
-
+        public DateTime? NotedDate { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
     }

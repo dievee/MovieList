@@ -948,6 +948,15 @@
     <Compile Include="Managers\DALManager.cs" />
     <Compile Include="Managers\IMDBManager.cs" />
     <Compile Include="Managers\ParseManager.cs" />
+    <Compile Include="Migrations\201608221830043_AddNotedDateField.cs" />
+    <Compile Include="Migrations\201608221830043_AddNotedDateField.Designer.cs">
+      <DependentUpon>201608221830043_AddNotedDateField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608221905455_AddNullableNotedDate.cs" />
+    <Compile Include="Migrations\201608221905455_AddNullableNotedDate.Designer.cs">
+      <DependentUpon>201608221905455_AddNullableNotedDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ApplicationUserManager.cs" />
@@ -995,6 +1004,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201608221830043_AddNotedDateField.resx">
+      <DependentUpon>201608221830043_AddNotedDateField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608221905455_AddNullableNotedDate.resx">
+      <DependentUpon>201608221905455_AddNullableNotedDate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

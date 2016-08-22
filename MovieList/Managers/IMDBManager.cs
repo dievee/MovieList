@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using MovieList.Models;
 using System.Net;
 using Newtonsoft.Json;
