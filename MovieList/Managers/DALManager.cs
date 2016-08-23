@@ -19,14 +19,15 @@ namespace MovieList.Managers
             if (id == null)
             {
                 var query = from movies in db.Movies
+                            where movies.Mark != null
                             select movies;
                 return query.ToList();
             }
             else
             {
                 var query = (from movies in db.Movies
-                            where movies.UserId == id
-                            select movies);
+                            where movies.UserId == id && movies.Mark != null
+                             select movies);
                 return query.ToList();
             }
         }
@@ -103,7 +104,7 @@ namespace MovieList.Managers
         public int GetCountOfMovies(string id)
         {
             var query = (from movies in db.Movies
-                         where movies.UserId.Equals(id)
+                         where movies.UserId.Equals(id) && movies.Mark != null
                          select movies).Count();
 
             return query;

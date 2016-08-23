@@ -118,6 +118,30 @@
                     </div>
                 </div>
             }
+            <hr />
+            <h3>My notes</h3>
+            <br />
+            @foreach (var b in ViewBag.Notes)
+            {
+                <div class="notation">
+                    <div class="title">
+                        <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
+                    </div>
+                    <div class="poster">
+                        <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
+                    </div>
+
+                    <div class="author">
+                        <a>imdb:@b.IMDBRating</a>
+                        <br />
+                        <a>@b.NotedDate</a>
+                        <br />
+                    </div>
+                    <div class="comment">
+                        @b.Comment
+                    </div>
+                </div>
+            }
         </div>
 
     }
