@@ -1,4 +1,5 @@
-﻿using MovieList.Models;
+﻿using Microsoft.AspNet.Identity;
+using MovieList.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,6 +38,7 @@ namespace MovieList.Managers
             if (id == null)
             {
                 var query = (from moviesdb in db.Movies
+                             where moviesdb.Mark != null
                              join users in db.Users on moviesdb.UserId equals users.Id
                             select new { moviesdb, users.UserName });
                 foreach(var i in query)
@@ -53,9 +55,10 @@ namespace MovieList.Managers
             else
             {
                 var query = (from moviesdb in db.Movies
-                             where moviesdb.UserId == id
+                             where moviesdb.UserId == id && moviesdb.Mark != null
                              join users in db.Users on moviesdb.UserId equals users.Id
                              select new { moviesdb, users.UserName });
+
                 foreach (var i in query)
                 {
                     movie = i.moviesdb;
@@ -66,6 +69,17 @@ namespace MovieList.Managers
 
                 return movies;
             }
+        }
+
+        public List<Movie> GetNotes(string id)
+        {
+            List<Movie> movies = new List<Movie>();
+
+            var query = (from moviesdb in db.Movies
+                         where moviesdb.Mark == null && moviesdb.UserId == id
+                         select moviesdb);
+
+            return query.ToList();
         }
 
         public string GetUserName(string id)
