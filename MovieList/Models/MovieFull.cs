@@ -10,5 +10,8 @@ namespace MovieList.Models
 
         [NotMapped]
         public string Error { get; set; }
+
+        [NotMapped]
+        public string Type { get; set; }
     }
 }

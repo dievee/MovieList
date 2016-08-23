@@ -50,9 +50,10 @@ namespace MovieList.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Search(string movieTitle, string movieYear)  //SearchMovie smovie
+        public ActionResult Search(string movieTitle, string movieYear, string type)  //SearchMovie smovie
         {
             Movie movie = imdb.GetMovie(movieTitle, movieYear);
+            movie.Type = type;
             ViewBag.Movie = movie;
 
             return View();
@@ -75,11 +76,12 @@ namespace MovieList.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add(Movie movie, int Mark)
+        public ActionResult Add(Movie movie, int? Mark)
         {
             movie.Mark = Mark.ToString();
             movie.UserId = User.Identity.GetUserId();
             movie.NotedDate = DateTime.Now.Date;
+
             dal.AddMovie(movie);
 
             return RedirectToAction("Index");

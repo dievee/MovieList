@@ -1,4 +1,5 @@
 ﻿@model MovieList.Models.Movie
+
 <head>
     <link href="~/Content/css/movie.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/starrating.css" rel="stylesheet" type="text/css" />
@@ -35,6 +36,9 @@
                                 <br />
                                 <input type="text" class="form-control" name="movieYear" placeholder="Year" autocomplete="off" />
                                 <br />
+                                @Html.RadioButton("type", "Movie")<label>Add movie you saw</label>
+                                <br />
+                                @Html.RadioButton("type", "Note")<label>Add note about movie you want to see</label>
                             </div>
 
                             <div style="text-align: center; ">
@@ -77,20 +81,20 @@
                                         <br />
                                         @Html.TextAreaFor(m => m.Comment, new { @id = "comment", @placeholder = "Comment", @rows = 5, @class = "form-control" })
                                         <br />
-                                        <div class="ratinggroup" style="width: 150px; height: 50px; margin: auto;">
-                                            <fieldset class="rating">
-                                                @* http://codepen.io/jamesbarnett/pen/vlpkh *@
-                                                @Html.RadioButton("Mark", "5", new { @id = "star5" })<label class="full" for="star5" title="Awesome"></label>
-                                                @Html.RadioButton("Mark", "4", new { @id = "star4" })<label class="full" for="star4" title="Pretty good"></label>
-                                                @Html.RadioButton("Mark", "3", new { @id = "star3" })<label class="full" for="star3" title="Meh"></label>
-                                                @Html.RadioButton("Mark", "2", new { @id = "star2" })<label class="full" for="star2" title="Bad"></label>
-                                                @Html.RadioButton("Mark", "1", new { @id = "star1" })<label class="full" for="star1" title="So bad"></label>
-                                            </fieldset>
-                                        </div>
+                                        if(ViewBag.movie.Type == "Movie")
+                                        { 
+                                            <div class="ratinggroup" style="width: 150px; height: 50px; margin: auto;">
+                                                <fieldset class="rating">
+                                                    @* http://codepen.io/jamesbarnett/pen/vlpkh *@
+                                                    @Html.RadioButton("Mark", "5", new { @id = "star5" })<label class="full" for="star5" title="Awesome"></label>
+                                                    @Html.RadioButton("Mark", "4", new { @id = "star4" })<label class="full" for="star4" title="Pretty good"></label>
+                                                    @Html.RadioButton("Mark", "3", new { @id = "star3" })<label class="full" for="star3" title="Meh"></label>
+                                                    @Html.RadioButton("Mark", "2", new { @id = "star2" })<label class="full" for="star2" title="Bad"></label>
+                                                    @Html.RadioButton("Mark", "1", new { @id = "star1" })<label class="full" for="star1" title="So bad"></label>
+                                                </fieldset>
+                                            </div>
+                                        }
                                         <center><input type="submit" class="btn btn-primary" value=Add /></center>
-                                        @*<div class="form-group">
-                                    <textarea class="form-control" rows="5" id="comment"></textarea>
-                                </div>*@
                                     }
                                 </div>
                             </div>
