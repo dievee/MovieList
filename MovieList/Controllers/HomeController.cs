@@ -78,7 +78,9 @@ namespace MovieList.Controllers
         [HttpPost]
         public ActionResult Add(Movie movie, int? Mark)
         {
-            movie.Mark = Mark.ToString();
+            if (Mark != null)
+                movie.Mark = Mark.ToString();
+
             movie.UserId = User.Identity.GetUserId();
             movie.NotedDate = DateTime.Now.Date;
 
