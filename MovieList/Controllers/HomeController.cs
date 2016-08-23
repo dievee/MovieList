@@ -24,6 +24,7 @@ namespace MovieList.Controllers
                     ApplicationUser user = dal.GetUserInfo(id);
                     List<Movie> movies = dal.GetMovies(id);
                     List<Movie> notes = dal.GetNotes(id);
+
                     ViewBag.User = user;
                     ViewBag.Movies = movies;
                     ViewBag.Notes = notes;
