@@ -8,19 +8,18 @@ namespace MovieList.Controllers
 {
     public class HomeController : BaseController
     {
-
         // GET: Home
         public ActionResult Index(string id)
         {
             if (id == null)
             {
-                 List<Movie> movies = dal.GetMoviesFull();
-                 ViewBag.Movies = movies;
+                List<Movie> movies = dal.GetMoviesFull();
+                ViewBag.Movies = movies;
             }
             else
             {
-                if (id == User.Identity.GetUserId())
-                { 
+                if ( id == User.Identity.GetUserId() )
+                {
                     ApplicationUser user = dal.GetUserInfo(id);
                     List<Movie> movies = dal.GetMovies(id);
                     List<Movie> notes = dal.GetNotes(id);
@@ -29,13 +28,8 @@ namespace MovieList.Controllers
                     ViewBag.Movies = movies;
                     ViewBag.Notes = notes;
                 }
-                else
-                {
-                    //TODO: Create data for showing foreign profile
-                   // ApplicationUser user = dal.GetUserInfo(id);
-                 //   ViewBag.User = user;
-                }
             }
+                
 
             return View();
         }
@@ -53,7 +47,7 @@ namespace MovieList.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Search(string movieTitle, string movieYear, string type)  //SearchMovie smovie
+        public ActionResult Search(string movieTitle, string movieYear, string type)
         {
             Movie movie = imdb.GetMovie(movieTitle, movieYear);
             movie.Type = type;
@@ -85,7 +79,7 @@ namespace MovieList.Controllers
                 movie.Mark = Mark.ToString();
 
             movie.UserId = User.Identity.GetUserId();
-            movie.NotedDate = DateTime.Now.Date;
+            movie.NotedDate = DateTime.Now;
 
             dal.AddMovie(movie);
 

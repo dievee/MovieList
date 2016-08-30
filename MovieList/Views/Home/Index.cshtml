@@ -11,6 +11,7 @@
             float: none;
             margin: 0 auto;
         }
+        
     </style>
 </head>
 <body>
@@ -37,29 +38,36 @@
                         <a> @b.UserName </a>
                         <br />
                         <a>@b.NotedDate</a>
-                        @*<a> @b.Time</a>*@
-                        <br />
-                        <br />
-                        @if(b.Mark != null)
-                        {
-                            for (int i = 0; i < Int32.Parse(b.Mark); i++)
+                        <div class="mark">
+                            @if (b.Mark != null)
                             {
-                                <div style="display: inline-block;">
-                                    <img src="~/Content/Images/star_gold_small.png" />
-                                </div>
+                                for (int i = 0; i < Int32.Parse(b.Mark); i++)
+                                {
+                                    <div style="display: inline-block;">
+                                        <img src="~/Content/Images/star_gold_small.png" />
+                                    </div>
+                                }
+                                for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
+                                {
+                                    <div style="display: inline-block;">
+                                        <img src="~/Content/Images/star_gray_small.png" />
+                                    </div>
+                                }
                             }
-                            for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
+                        </div>  
+                        <div class="comment">
+                            @if(b.Comment.Length > 220)
                             {
-                                <div style="display: inline-block;">
-                                    <img src="~/Content/Images/star_gray_small.png" />
-                                </div>
+                                @b.Comment.Substring(0, 220) 
+                                <a>...</a>
                             }
-                        }
-                        
+                            else
+                            {
+                                @b.Comment
+                            }
+                        </div>                 
                     </div>
-                    <div class="comment">
-                        @b.Comment
-                    </div>
+                    
                 </div>
             }
         </div>
@@ -95,27 +103,34 @@
                             <a>imdb:@b.IMDBRating</a>
                         <br />
                         <a>@b.NotedDate</a>
-                        @*<a> @b.Time</a>*@
-                        <br />
-                        <br />
-                        @if(b.Mark != null)
-                        {
-                            for (int i = 0; i < Int32.Parse(b.Mark); i++)
+                        <div class="mark">
+                            @if (b.Mark != null)
                             {
-                                <div style="display: inline-block;">
-                                    <img src="~/Content/Images/star_gold_small.png" />
-                                </div>
+                                for (int i = 0; i < Int32.Parse(b.Mark); i++)
+                                {
+                                    <div style="display: inline-block;">
+                                        <img src="~/Content/Images/star_gold_small.png" />
+                                    </div>
+                                }
+                                for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
+                                {
+                                    <div style="display: inline-block;">
+                                        <img src="~/Content/Images/star_gray_small.png" />
+                                    </div>
+                                }
                             }
-                            for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
+                        </div> 
+                        <div class="comment">
+                            @if (b.Comment.Length > 220)
                             {
-                                <div style="display: inline-block;">
-                                    <img src="~/Content/Images/star_gray_small.png" />
-                                </div>
+                                @b.Comment.Substring(0, 220)
+                                <a>...</a>
                             }
-                        }
-                    </div>
-                    <div class="comment">
-                        @b.Comment
+                            else
+                            {
+                                @b.Comment
+                            }
+                        </div>
                     </div>
                 </div>
             }
@@ -136,10 +151,17 @@
                         <a>imdb:@b.IMDBRating</a>
                         <br />
                         <a>@b.NotedDate</a>
-                        <br />
-                    </div>
-                    <div class="comment">
-                        @b.Comment
+                        <div class="comment">
+                            @if (b.Comment.Length > 220)
+                            {
+                                @b.Comment.Substring(0, 220)
+                                <a>...</a>
+                            }
+                            else
+                            {
+                                @b.Comment
+                            }
+                        </div>
                     </div>
                 </div>
             }

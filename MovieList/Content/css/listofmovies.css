@@ -1,38 +1,54 @@
 ﻿
-/*Bad css, TODO: R&R this later*/
+/* TODO: R&R !important later*/
 
 .notation {
     display: inline-block !important; width: 30% !important; min-height: 260px !important; background-color: #ffffff !important; 
     margin: 10px !important; padding: 10px !important; vertical-align: top;
 }
+.notation a{
+    text-decoration: none;
+}
+.notation a :hover{
+    color: red;
+}
 .title{
-    width: 100% ; margin-bottom: 5px ;
+    width: 100% ; 
+    margin-bottom: 5px ;
 }
 .title h4{
     margin: 0 !important;
 }
 .poster{
-    width: 133px ; height: 200px;  float: left;
+    width: 133px ; 
+    height: 200px;  
+    float: left;
 }
 .poster img{
-    width: 100%; height: auto;
+    width: 100%; 
+    height: auto;
 }
 .rating{
     float: right;
 }
 .author{
-     margin-top: 30px;
- width: 200px;
+  width: 200px;
   margin-left: 140px;
 }
 .comment{
   width: 200px;
-  margin-left: 140px;
+  float: left;
 }
 .photo{
-    width: 64px; height: 64px; background-color: black; margin-left: 150px; float: right;
+    width: 64px; 
+    height: 64px; 
+    background-color: black; 
+    margin-left: 150px; 
+    float: right;
 }
 .photo img{
     width: 100%;
     height: auto;
+}
+.mark{
+    float: left;
 }

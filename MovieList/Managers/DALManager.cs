@@ -32,7 +32,7 @@ namespace MovieList.Managers
             }
         }
 
-        public List<Movie> GetMoviesFull(string id = null)  // TODO: finish join query
+        public List<Movie> GetMoviesFull(string id = null)
         {
             Movie movie;
             List<Movie> movies = new List<Movie>();
@@ -51,7 +51,6 @@ namespace MovieList.Managers
                 }
 
                 return movies;
-                // return query.ToList();
             }
             else
             {

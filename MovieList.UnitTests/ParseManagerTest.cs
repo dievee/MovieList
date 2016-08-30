@@ -22,7 +22,7 @@ namespace MovieList.UnitTests
             }
             catch(Exception ex)
             {
-                Assert.Fail("Got Exception. Can't convert part of id to int. M:" + ex.Message);
+                Assert.Fail("Got Exception. Can't convert part of id to int. M: " + ex.Message);
             }
         }
     }
