@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using MovieList.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -107,6 +108,14 @@ namespace MovieList.Managers
                          select movies).Count();
 
             return query;
+        }
+        public Movie GetMovie(string id)
+        {
+            var query = (from moviesdb in db.Movies
+                         where moviesdb.MovieId == Int32.Parse(id)
+                         select moviesdb);
+
+            return query as Movie;
         }
 
         public void AddMovie(Movie movie)
