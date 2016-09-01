@@ -105,5 +105,16 @@ namespace MovieList.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Delete(string noteId)
+        {
+            if (noteId != null)
+            {
+                Movie movie = dal.GetMovie(noteId);
+                dal.DeleteMovie(movie);
+            }
+                
+            return RedirectToAction("Index");
+        }
+
     }
 }

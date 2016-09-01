@@ -131,7 +131,9 @@ namespace MovieList.Managers
         }
         public void DeleteMovie(Movie movie)
         {
-           // db.Movies.
+            db.Movies.Remove(movie);
+         //   db.Movies.DeleteOnSubmit(movie);
+            // db.Movies.
             db.SaveChanges();
         }
     }

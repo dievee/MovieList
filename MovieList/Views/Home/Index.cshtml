@@ -101,9 +101,13 @@
                         <div style="display: inline-block;">
                             <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
                         </div>
-                        <div style="width: 16px; height: 16px; display: inline-block; padding: 0; margin: 0; float: right;">
-                            @*<img style="width: 20px;" src="http://www.iconsearch.ru/uploads/icons/darkglass_reworked/128x128/edit_add.png" />*@
+                        @*<div style="width: 16px; height: 16px; display: inline-block; padding: 0; margin: 0; float: right;">
                             <img style="width: 16px;" src="http://s1.iconbird.com/ico/0612/GooglePlusInterfaceIcons/w128h1281338911337cross.png" />
+                        </div>*@
+                        <div class="deletenote">
+                            <a href="@Url.Action("Delete", new { noteId = b.MovieId })">
+                                <img src="~/Content/Images/delete.png" />
+                            </a>
                         </div>
                     </div>
                     <div class="poster">
@@ -162,7 +166,9 @@
                             <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
                         </div>
                         <div class="deletenote">
-                            <img src="~/Content/Images/delete.png" />
+                            <a href="@Url.Action("Delete", new { noteId = b.MovieId })">
+                                <img src="~/Content/Images/delete.png" />
+                            </a>
                         </div>
                         <div class="addnote">
                             <a href="@Url.Action("Add", new { noteId = b.MovieId })">
