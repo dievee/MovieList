@@ -122,6 +122,7 @@ namespace MovieList.Managers
         public void UpdateMovieFromNote(Movie movie)
         {
             db.Entry(movie).State = EntityState.Modified;
+            SaveChanges();
         }
         public void AddMovie(Movie movie)
         {

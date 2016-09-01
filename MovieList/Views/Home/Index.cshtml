@@ -161,15 +161,15 @@
                         <div style="display: inline-block;">
                             <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
                         </div>
+                        <div class="deletenote">
+                            <img src="~/Content/Images/delete.png" />
+                        </div>
                         <div class="addnote">
                             <a href="@Url.Action("Add", new { noteId = b.MovieId })">
                                 <img src="~/Content/Images/add.png" />
                             </a>
+                        </div>
 
-                        </div>
-                        <div class="deletenote">
-                            <img src="~/Content/Images/delete.png" />
-                        </div>
                     </div>
                     <div class="poster">
                         <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
