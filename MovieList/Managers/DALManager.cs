@@ -2,6 +2,7 @@
 using MovieList.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace MovieList.Managers
@@ -111,13 +112,17 @@ namespace MovieList.Managers
         }
         public Movie GetMovie(string id)
         {
+            int movieid = Int32.Parse(id);
             var query = (from moviesdb in db.Movies
-                         where moviesdb.MovieId == Int32.Parse(id)
+                         where moviesdb.MovieId == movieid
                          select moviesdb);
 
-            return query as Movie;
+            return query.FirstOrDefault() as Movie;
         }
-
+        public void UpdateMovieFromNote(Movie movie)
+        {
+            db.Entry(movie).State = EntityState.Modified;
+        }
         public void AddMovie(Movie movie)
         {
             db.Movies.Add(movie);

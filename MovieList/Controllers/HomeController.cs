@@ -71,9 +71,16 @@ namespace MovieList.Controllers
             
             return View();
         }
+        [HttpGet]
+        public ActionResult Add(string noteId) //showing note for editing to movie
+        {
+            Movie movie = dal.GetMovie(noteId);
+            ViewBag.Movie = movie;
 
+            return View();
+        }
         [HttpPost]
-        public ActionResult Add(Movie movie, int? Mark)
+        public ActionResult Add(Movie movie, int? Mark) 
         {
             if (Mark != null)
                 movie.Mark = Mark.ToString();
@@ -85,5 +92,18 @@ namespace MovieList.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult Update(Movie movie, int? Mark)
+        {
+            if (Mark != null)
+                movie.Mark = Mark.ToString();
+
+            movie.NotedDate = DateTime.Now;
+            dal.UpdateMovieFromNote(movie);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
