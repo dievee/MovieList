@@ -99,7 +99,7 @@ namespace MovieList.Managers
                          where u.Id.Equals(id)
                          select u);
 
-            return query.FirstOrDefault() as ApplicationUser;
+            return query.Single() as ApplicationUser;
         }
 
         public int GetCountOfMovies(string id)
@@ -117,7 +117,7 @@ namespace MovieList.Managers
                          where moviesdb.MovieId == movieid
                          select moviesdb);
 
-            return query.FirstOrDefault() as Movie;
+            return query.Single() as Movie;
         }
         public void UpdateMovieFromNote(Movie movie)
         {
@@ -127,6 +127,11 @@ namespace MovieList.Managers
         public void AddMovie(Movie movie)
         {
             db.Movies.Add(movie);
+            db.SaveChanges();
+        }
+        public void DeleteMovie(Movie movie)
+        {
+           // db.Movies.
             db.SaveChanges();
         }
     }
