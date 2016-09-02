@@ -944,6 +944,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1006,6 +1007,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608221830043_AddNotedDateField.resx">

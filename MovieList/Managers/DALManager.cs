@@ -119,6 +119,16 @@ namespace MovieList.Managers
 
             return query.Single() as Movie;
         }
+        
+        public List<Movie> GetMoviesByTitle(string title) // TODO: Add filtration search result( do not show not own user's notes)
+        {
+            var query = from moviesdb in db.Movies
+                        where moviesdb.Title.Contains(title)  // && moviesdb.Mark != null
+                        select moviesdb;
+
+            return query.ToList();
+        }
+
         public void UpdateMovieFromNote(Movie movie)
         {
             db.Entry(movie).State = EntityState.Modified;
@@ -132,8 +142,6 @@ namespace MovieList.Managers
         public void DeleteMovie(Movie movie)
         {
             db.Movies.Remove(movie);
-         //   db.Movies.DeleteOnSubmit(movie);
-            // db.Movies.
             db.SaveChanges();
         }
     }
