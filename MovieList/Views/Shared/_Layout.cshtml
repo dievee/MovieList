@@ -24,26 +24,42 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                   
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li>  
-                                @Html.ActionLink( @User.Identity.Name, "Index", "Home",  new { @class = "navbar-brand", id = User.Identity.GetUserId() }, null)
-                            </li>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>
+                            @Html.ActionLink(@User.Identity.Name, "Index", "Home", new { @class = "navbar-brand", id = User.Identity.GetUserId() }, null)
+                        </li>
                             <li>
                                 @Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
                             </li>
 
-                        }
-                        else
+                    }
+                    else
+                    {
+                        <li>
+                            @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
+                        </li>
+                    }
+
+                    <li>
+                        @using (Html.BeginForm("Result", "Search", FormMethod.Get))
                         {
-                            <li>
-                                @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                            </li>
+                            @Html.AntiForgeryToken()
+                            <form class="form-inline">
+
+                                @Html.ValidationSummary()
+                                <div class="form-group">
+                                   @* <input type="search" id="search">*@
+                                    @Html.Editor("title")
+                                </div>
+                                <button type="submit" class="btn btn-default" style="display: none; ">Search</button>
+                            </form>
                         }
-                    
-                </ul>
-            </div>
+                        </li>
+                        </ul>
+                    </div>
+
         </div>
     </div>
 
