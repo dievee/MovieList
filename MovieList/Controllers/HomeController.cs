@@ -100,6 +100,7 @@ namespace MovieList.Controllers
                 movie.Mark = Mark.ToString();
 
             movie.NotedDate = DateTime.Now;
+            movie.UserId = User.Identity.GetUserId();
             dal.UpdateMovieFromNote(movie);
 
             return RedirectToAction("Index");

@@ -998,6 +998,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\AdvancedSearch.cshtml" />
+    <Content Include="Views\Search\Result.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1007,7 +1008,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Search\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608221830043_AddNotedDateField.resx">

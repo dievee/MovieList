@@ -12,21 +12,20 @@ namespace MovieList.Controllers
         // GET: Search
         public ActionResult Index()
         {
+
             return View();
         }
         [HttpGet]
         public ActionResult Result(string title)
         {
             List<Movie> movies = new List<Movie>();
-             movies = dal.GetMoviesByTitle(title);
+            ViewBag.Movies = dal.GetMoviesByTitle(title);
 
             return View();
         }
-
-        //[HttpPost]
-        //public ActionResult Result(Movie movie)
-        //{
-        //    return View();
-        //}
     }
 }
+
+//TODO: Add search field in header to 
+//searching movies/notes.
+//Add filtrating in searched query.
