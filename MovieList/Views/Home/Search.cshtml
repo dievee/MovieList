@@ -27,23 +27,26 @@
                 
             }
                 <div class="row">
-                    <div class="col-md-3 col-centered searchform">
+                    <div class="col-md-4 col-centered searchform">
                         @using (Html.BeginForm("Search", "Home", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            <div>
-                                <input type="text" class="form-control" name="movieTitle" placeholder="Title" autocomplete="off" />
-                                <br />
-                                <input type="text" class="form-control" name="movieYear" placeholder="Year" autocomplete="off" />
-                                <br />
-                                @Html.RadioButton("type", "Movie")<label>Add movie you saw</label>
-                                <br />
-                                @Html.RadioButton("type", "Note")<label>Add note about movie you want to see</label>
-                            </div>
+                            
+                                <div>
+                                    <div class="col-centered">
+                                        <input type="text" class="form-control" name="movieTitle" placeholder="Title" autocomplete="off" />
+                                        <br />
+                                        <input type="text" class="form-control" name="movieYear" placeholder="Year" autocomplete="off" />
+                                        <br />
+                                    </div>
+                                        @Html.RadioButton("type", "Movie")<label>Add movie you saw</label>
+                                        <br />
+                                        @Html.RadioButton("type", "Note")<label>Add note about movie you want to see</label>
+                                </div>
 
-                            <div style="text-align: center; ">
-                                <button type="submit" class="btn btn-default" >Search</button>
-                            </div>
+                                <div style="text-align: center; ">
+                                    <button type="submit" class="btn btn-default">Search</button>
+                                </div>
                         }
                     </div>
                 </div>
