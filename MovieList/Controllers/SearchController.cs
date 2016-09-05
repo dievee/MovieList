@@ -19,7 +19,10 @@ namespace MovieList.Controllers
         public ActionResult Result(string title)
         {
             List<Movie> movies = new List<Movie>();
-            ViewBag.Movies = dal.GetMoviesByTitle(title);
+            if (movies.Count == 0)
+                ViewBag.Message = "There is not movies containt this characters.";
+            else
+                ViewBag.Movies = dal.GetMoviesByTitle(title);
 
             return View();
         }

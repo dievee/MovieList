@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity;
 using MovieList.Models;
 using System;
 
-namespace MovieList.Controllers
+namespace MovieList.Controllers  // TODO: add filtration to search method
 {
     public class HomeController : BaseController
     {

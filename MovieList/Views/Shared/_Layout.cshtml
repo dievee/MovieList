@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNet.Identity;
+﻿@using Microsoft.AspNet.Identity;  @*TODO: add filtration searching data ( min 4 characters)*@
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,23 +41,7 @@
                             @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
                         </li>
                     }
-
-                    <li>
-                        @using (Html.BeginForm("Result", "Search", FormMethod.Get))
-                        {
-                            @Html.AntiForgeryToken()
-                            <form class="form-inline">
-
-                                @Html.ValidationSummary()
-                                <div class="form-group">
-                                   @* <input type="search" id="search">*@
-                                    @Html.Editor("title")
-                                </div>
-                                <button type="submit" class="btn btn-default" style="display: none; ">Search</button>
-                            </form>
-                        }
-                        </li>
-                        </ul>
+                </ul>
                     </div>
 
         </div>

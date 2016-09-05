@@ -1,4 +1,4 @@
-﻿@using Microsoft.AspNet.Identity;
+﻿@using Microsoft.AspNet.Identity;   @*TODO: fix html css*@
 @using MovieList.Models;
 <head>
     <link href="~/Content/css/listofmoviesdcss" rel="stylesheet" type="text/css" />
@@ -12,58 +12,65 @@
 </head>
 <body>
     <div class="row">
-        @foreach (var b in ViewBag.Movies)
+        @if (ViewBag.Message != null)
         {
-            <div class="notation">
-                <div class="title">
-                    <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
-                </div>
-                <div class="poster">
-                    <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
-                </div>
-
-                <div class="author">
-                    <div class="authorname">
-                        <a> @b.UserName </a>
+            <h3>@ViewBag.Message</h3>
+        }
+        else
+        {
+            foreach (var b in ViewBag.Movies)
+            {
+                <div class="notation">
+                    <div class="title">
+                        <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
                     </div>
-                    <div class="mark">
-                        @if (b.Mark != null)
-                        {
-                            for (int i = 0; i < Int32.Parse(b.Mark); i++)
+                    <div class="poster">
+                        <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
+                    </div>
+
+                    <div class="author">
+                        <div class="authorname">
+                            <a> @b.UserName </a>
+                        </div>
+                        <div class="mark">
+                            @if (b.Mark != null)
                             {
-                                <div style="display: inline-block;">
-                                    <img src="~/Content/Images/star_gold_small.png" />
-                                </div>
+                                for (int i = 0; i < Int32.Parse(b.Mark); i++)
+                                {
+                                    <div style="display: inline-block;">
+                                        <img src="~/Content/Images/star_gold_small.png" />
+                                    </div>
+                                }
+                                for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
+                                {
+                                    <div style="display: inline-block;">
+                                        <img src="~/Content/Images/star_gray_small.png" />
+                                    </div>
+                                }
                             }
-                            for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
+                        </div>
+                        <div class="rating">
+                            <a>imdb:@b.IMDBRating</a>
+                        </div>
+                        <div class="date">
+                            <a>@b.NotedDate.ToString("dd/MM/yyyy")</a>
+                        </div>
+
+                        <div class="comment">
+                            @if (b.Comment.Length > 220)
                             {
-                                <div style="display: inline-block;">
-                                    <img src="~/Content/Images/star_gray_small.png" />
-                                </div>
+                                @b.Comment.Substring(0, 220)
+                                <a>...</a>
                             }
-                        }
-                    </div>
-                    <div class="rating">
-                        <a>imdb:@b.IMDBRating</a>
-                    </div>
-                    <div class="date">
-                        <a>@b.NotedDate.ToString("dd/MM/yyyy")</a>
+                            else
+                            {
+                                @b.Comment
+                            }
+                        </div>
                     </div>
 
-                    <div class="comment">
-                        @if (b.Comment.Length > 220)
-                        {
-                            @b.Comment.Substring(0, 220)
-                            <a>...</a>
-                        }
-                        else
-                        {
-                            @b.Comment
-                        }
-                    </div>
                 </div>
-
-            </div>
+            }
         }
     </div>
 
