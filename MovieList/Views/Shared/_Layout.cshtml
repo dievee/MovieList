@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/header.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body style="background-color: #f4f8fb">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -45,9 +46,50 @@
                     </div>
 
         </div>
-    </div>
+    </div>*@
+
+    <div id="header">
+        <div class="menu">
+            <ul class="menu_ul">
+                <li>@Html.ActionLink("Movie List", "Index", "Home")</li>
+                <li>@Html.ActionLink("Add Movie", "Search", "Home")</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        @Html.ActionLink(@User.Identity.Name, "Index", "Home", new { id = User.Identity.GetUserId() })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Logout", "Logout", "Account")
+                    </li>
+
+                }
+                else
+                {
+                    <li>
+                        @Html.ActionLink("Login", "Login", "Account")
+                    </li>
+                }
+            </ul>
+            @*<form id="search">
+                <input type="search" name="" value="поиск" onblur="if(this.value=='') this.value='поиск';" onfocus="if(this.value=='поиск') this.value='';" class="input" />
+                <input type="submit" name="" value="" class="submit" />
+            </form>*@
+            @using (Html.BeginForm("Result", "Search", FormMethod.Get))
+            {
+                @Html.AntiForgeryToken()
+                <div id="search">
+                    @Html.ValidationSummary()
+                    @Html.TextBox("title",null, new { @class = "input", @type="Search", @onblur = "if(this.value=='') this.value='Search';", onfocus = "if(this.value=='Search') this.value='';" })
+                    <input type="submit" class="submit" value=""/>
+                </div>
+            }
+        </div>
+            </div>
+
+
 
     <div class="container body-content">
+        
         @RenderBody()
         <hr />
         <footer>

@@ -7,48 +7,37 @@
     background-color: aliceblue;
     padding: 10px 0 10px 10px;
 }
-
-    .title{
+.title{
         
-    }
+}
+.title h2{
+    margin: 0;
+    padding: 0 0 10px 0 ;
+}
 
-        .title h2{
-            margin: 0;
-            padding: 0 0 10px 0 ;
-        }
-
-    .body{
-
+.rating a {
+    float: left;
+}
+ .poster{
+    width: 200px;
+    height: auto;
+    float: left;    
+}
+.poster img{
+    width: 100%;
+    height: auto;
+}
             
-    }
-        .rating a{
-            float: left;
-        }
-        .poster{
-            width: 200px;
-            height: auto;
+
+.movieinfo{
+    float: right;
+    padding-left: 220px;
+    position: absolute;
+    top:75px;
+    left:10px;
+ }
             
-           
-        }
-
-            .poster img{
-                width: 100%;
-                height: auto;
-            }
-
-        .movieinfo{
-            padding-left: 220px;
-        }
-            
-            .description{
-                float: left;
-                padding-top: 20px;
-            }
-
-            .comment{
-
-            }
-
-.notation{
-    
+.description{
+   float: left;
+   padding-top: 20px;
 }
