@@ -146,6 +146,7 @@
     <Content Include="Content\css\header.css" />
     <Content Include="Content\css\listofmovies.css" />
     <Content Include="Content\css\movie.css" />
+    <Content Include="Content\css\movieAdd.css" />
     <Content Include="Content\css\starrating.css" />
     <Content Include="Content\css\UserProfile.css" />
     <Content Include="Content\Images\add.png" />

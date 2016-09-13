@@ -8,6 +8,7 @@
 }
 <head>
     <link href="~/Content/css/movie.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/movieAdd.css" rel="stylesheet" type="text/css" />
     <style>
         .searchform {
             background-color: aliceblue;
@@ -23,7 +24,7 @@
             display: block;
             text-align: center;
          }
-
+        /*
         .demoizo:hover, .demoizo:focus, .demoizo:active {
             background: url(https://image.freepik.com/free-icon/_318-8371.jpg) no-repeat 50% 50%;
          }
@@ -31,6 +32,38 @@
         .demoizo:hover img, .demoizo:focus img, .demoizo:active img  {
             background: transparent;
             visibility: hidden;
+        }*/
+
+        .poster{
+            background-color: black;
+            position: relative;
+        }
+        .poster img:hover{
+            opacity:.25;
+        }
+        .poster:hover .greenplus{
+            display: block;
+        }
+
+        .greenplus{
+            position: absolute; 
+            display: none;
+            top: 90px; 
+            left: 50px; 
+            width: 50px;
+            height: 50px;
+        }
+        .greenplus img {
+            width: 100%; 
+            height: auto;
+        }
+        .greenplus :hover{
+            opacity: 1;
+        }
+        .poster a:first-child{
+            position: relative; 
+            top: 0; 
+            left: 0;
         }
     </style>
 </head>
@@ -69,11 +102,32 @@
                     <div class="title" style="width: 150px; height: 70px; display:table-cell; vertical-align:bottom;">
                         <h5><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h5>
                     </div>
-                    <div class="poster" style="width: 150px;">
-                        <a href="@Url.Action("Search", "Home", new { @IMDBLink = b.IMDBLink })" class="demoizo"><img src="@b.Poster" /></a>  @*data-form-method="post" - attribute of <a> tag ||  if need to call post method *@ 
+                    <div class="poster" style="width: 150px; position: relative;">
+                        <a href="@Url.Action("Search", "Home", new { @IMDBLink = b.IMDBLink })" class="demoizo">
+                            <img src="@b.Poster"/>
+                            <div class="greenplus">
+                                <img src="http://3.bp.blogspot.com/_FFglI1QNcfg/TBjmCRUTaPI/AAAAAAAAAh8/aLSGC-z97yQ/s1600/Green+Plus.jpg" />
+                            </div>
+                        </a> 
                     </div>
-                </div>
-                i++;
+               </div>
+
+                //http://3.bp.blogspot.com/_FFglI1QNcfg/TBjmCRUTaPI/AAAAAAAAAh8/aLSGC-z97yQ/s1600/Green+Plus.jpg
+            @*<div style="position: relative; left: 0; top: 0;">
+                <img src="a.jpg" style="position: relative; top: 0; left: 0;" />
+                <img src="b.jpg" style="position: absolute; top: 30px; left: 70px;" />
+            </div>*@
+
+                    @*<div class="main">
+                        <div class="title" style="width: 150px; height: 70px; display:table-cell; vertical-align:bottom;">
+                            <h5><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h5>
+                        </div>
+                        <img src="@b.Poster" height="250"  />
+                        <div class="content">
+                            <button>Add film</button>
+                        </div>
+                    </div>*@
+
             }
         </div>
     }
