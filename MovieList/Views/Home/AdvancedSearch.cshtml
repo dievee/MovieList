@@ -57,8 +57,8 @@
             width: 100%; 
             height: auto;
         }
-        .greenplus :hover{
-            opacity: 1;
+        .greenplus:hover .posterimg{
+            opacity:.25;
         }
         .poster a:first-child{
             position: relative; 
@@ -104,9 +104,9 @@
                     </div>
                     <div class="poster" style="width: 150px; position: relative;">
                         <a href="@Url.Action("Search", "Home", new { @IMDBLink = b.IMDBLink })" class="demoizo">
-                            <img src="@b.Poster"/>
+                            <img class="posterimg" src="@b.Poster"/>
                             <div class="greenplus">
-                                <img src="http://3.bp.blogspot.com/_FFglI1QNcfg/TBjmCRUTaPI/AAAAAAAAAh8/aLSGC-z97yQ/s1600/Green+Plus.jpg" />
+                                <img src="~/Content/Images/greenplus.png" />
                             </div>
                         </a> 
                     </div>
