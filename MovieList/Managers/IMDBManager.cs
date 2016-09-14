@@ -98,6 +98,7 @@ namespace MovieList.Managers
 
         public List<Movie> GetMoviesByAdvancedSearch(string movieTitle, string movieYear, string type)
         {
+            int i = 0;
             Movie movie;
             List<Movie> movies = new List<Movie>();
             string url = String.Format("http://www.omdbapi.com/?s={0}&page={1}&y={2}&type={3}", movieTitle, "1", movieYear, type);
@@ -111,6 +112,8 @@ namespace MovieList.Managers
                 {
                     if (m.Poster != "N/A")
                     {
+                        if (i >= 7) return movies;
+
                         movie = new Movie
                         {
                             Title = m.Title,
@@ -119,6 +122,7 @@ namespace MovieList.Managers
                             IMDBLink = "http://www.imdb.com/title/" + m.imdbID + "/"
                         };
                         movies.Add(movie);
+                        i++;
                     }
                 }
             }
