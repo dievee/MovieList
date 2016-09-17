@@ -1,4 +1,8 @@
 ﻿@using Microsoft.AspNet.Identity;  @*TODO: add filtration searching data ( min 4 characters)*@
+@{ 
+    string userId = User.Identity.GetUserId(); 
+ }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,52 +15,15 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body style="background-color: #f4f8fb">
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Movie List", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", id = "" })
-
-                @Html.ActionLink("Add Movie", "Search", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li>
-                            @Html.ActionLink(@User.Identity.Name, "Index", "Home", new { @class = "navbar-brand", id = User.Identity.GetUserId() }, null)
-                        </li>
-                            <li>
-                                @Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                            </li>
-
-                    }
-                    else
-                    {
-                        <li>
-                            @Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
-                        </li>
-                    }
-                </ul>
-                    </div>
-
-        </div>
-    </div>*@
-
     <div id="header">
         <div class="menu">
             <ul class="menu_ul">
-                <li>@Html.ActionLink("Movie List", "Index", "Home")</li>
-                <li>@Html.ActionLink("Add Movie", "Search", "Home")</li>
+                <li>@Html.ActionLink("Movie List", "Index", "Home", new { id = "" }, null)</li>
+                <li>@Html.ActionLink("Add Movie", "AdvancedSearch", "Home")</li>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li>
-                        @Html.ActionLink(@User.Identity.Name, "Index", "Home", new { id = User.Identity.GetUserId() })
+                        @Html.ActionLink(@User.Identity.Name, "Index", "Home", new { id = userId }, null)
                     </li>
                     <li>
                         @Html.ActionLink("Logout", "Logout", "Account")
@@ -70,10 +37,6 @@
                     </li>
                 }
             </ul>
-            @*<form id="search">
-                <input type="search" name="" value="поиск" onblur="if(this.value=='') this.value='поиск';" onfocus="if(this.value=='поиск') this.value='';" class="input" />
-                <input type="submit" name="" value="" class="submit" />
-            </form>*@
             @using (Html.BeginForm("Result", "Search", FormMethod.Get))
             {
                 @Html.AntiForgeryToken()

@@ -68,9 +68,14 @@
     </style>
 </head>
 <body>
-    <h2>AdvancedSearch</h2>
+    <div class="row">
+        <div class="col-md-3 col-centered">
+            <h2>AdvancedSearch</h2>
+            <br />
+        </div>
+    </div>
     @if(ViewBag.Movies == null)
-    { 
+    {
     <div class="row">
         <div class="col-md-3 col-centered searchform">
             @using (Html.BeginForm("AdvancedSearch", "Home", FormMethod.Post))
@@ -108,7 +113,7 @@
                             <div class="greenplus">
                                 <img src="~/Content/Images/greenplus.png" />
                             </div>
-                        </a> 
+                        </a>
                     </div>
                </div>
 
