@@ -11,6 +11,24 @@ namespace MovieList.Managers
     {
         private ApplicationContext db = new ApplicationContext();
 
+        public void UpdateMovieFromNote(Movie movie)
+        {
+            db.Entry(movie).State = EntityState.Modified;
+            SaveChanges();
+        }
+
+        public void AddMovie(Movie movie)
+        {
+            db.Movies.Add(movie);
+            db.SaveChanges();
+        }
+
+        public void DeleteMovie(Movie movie)
+        {
+            db.Movies.Remove(movie);
+            db.SaveChanges();
+        }
+
         public void SaveChanges()
         {
             db.SaveChanges();
@@ -129,20 +147,14 @@ namespace MovieList.Managers
             return query.ToList();
         }
 
-        public void UpdateMovieFromNote(Movie movie)
+        public List<Movie> GetMostPopularMovies(int count = 7, int startIndex = 0 ) // default: get (7) movies, first movie have index in db (0)
         {
-            db.Entry(movie).State = EntityState.Modified;
-            SaveChanges();
+            var query = (from moviesdb in db.Movies
+                        orderby moviesdb.MovieId
+                        select moviesdb).Skip(startIndex).Take(count);
+
+            return query.ToList();
         }
-        public void AddMovie(Movie movie)
-        {
-            db.Movies.Add(movie);
-            db.SaveChanges();
-        }
-        public void DeleteMovie(Movie movie)
-        {
-            db.Movies.Remove(movie);
-            db.SaveChanges();
-        }
+
     }
 }
