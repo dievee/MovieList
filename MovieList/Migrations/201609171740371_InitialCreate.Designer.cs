@@ -7,13 +7,13 @@ namespace MovieList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddNullableNotedDate : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddNullableNotedDate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608221905455_AddNullableNotedDate"; }
+            get { return "201609171740371_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

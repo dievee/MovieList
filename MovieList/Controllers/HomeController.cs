@@ -9,113 +9,113 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
     public class HomeController : BaseController
     {
         // GET: Home
-        public ActionResult Index(string id)
-        {
-            if (id == null)
-            {
-                List<Movie> movies = dal.GetMoviesFull();
-                ViewBag.Movies = movies;
-            }
-            else
-            {
-                if ( id == User.Identity.GetUserId() )
-                {
-                    ApplicationUser user = dal.GetUserInfo(id);
-                    List<Movie> movies = dal.GetMovies(id);
-                    List<Movie> notes = dal.GetNotes(id);
+        //public ActionResult Index(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        List<Movie> movies = dal.GetMoviesFull();
+        //        ViewBag.Movies = movies;
+        //    }
+        //    else
+        //    {
+        //        if ( id == User.Identity.GetUserId() )
+        //        {
+        //            ApplicationUser user = dal.GetUserInfo(id);
+        //            List<Movie> movies = dal.GetMovies(id);
+        //            List<Movie> notes = dal.GetNotes(id);
 
-                    ViewBag.User = user;
-                    ViewBag.Movies = movies;
-                    ViewBag.Notes = notes;
-                }
-            }
+        //            ViewBag.User = user;
+        //            ViewBag.Movies = movies;
+        //            ViewBag.Notes = notes;
+        //        }
+        //    }
                 
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        [HttpGet]
-        public ActionResult Search(string IMDBLink)
-        {
-            if (IMDBLink != null)
-            {
-                string id = prs.GetMovieIdFromLink(IMDBLink);
-                Movie movie = imdb.GetMovieById(id);
-                ViewBag.movie = movie;
-             }
+        //[HttpGet]
+        //public ActionResult Search(string IMDBLink)
+        //{
+        //    if (IMDBLink != null)
+        //    {
+        //        string id = prs.GetMovieIdFromLink(IMDBLink);
+        //        Movie movie = imdb.GetMovieById(id);
+        //        ViewBag.movie = movie;
+        //     }
 
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Search(string movieTitle, string movieYear, string type)
-        {
-            Movie movie = imdb.GetMovie(movieTitle, movieYear);
-            movie.Type = type;
-            ViewBag.Movie = movie;
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult Search(string movieTitle, string movieYear, string type)
+        //{
+        //    Movie movie = imdb.GetMovie(movieTitle, movieYear);
+        //    movie.Type = type;
+        //    ViewBag.Movie = movie;
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        [HttpGet]
-        public ActionResult AdvancedSearch()
-        {
+        //[HttpGet]
+        //public ActionResult AdvancedSearch()
+        //{
             
-            return View();
-        }
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult AdvancedSearch(string movieTitle, string movieYear, string type)  // search by s attribute
-        {
-            List<Movie> movies = imdb.GetMoviesByAdvancedSearch(movieTitle, movieYear, type); // TODO: Add Error message to list if errror
-            ViewBag.Movies = movies;
+        //[HttpPost]
+        //public ActionResult AdvancedSearch(string movieTitle, string movieYear, string type)  // search by s attribute
+        //{
+        //    List<Movie> movies = imdb.GetMoviesByAdvancedSearch(movieTitle, movieYear, type); // TODO: Add Error message to list if errror
+        //    ViewBag.Movies = movies;
             
-            return View();
-        }
-        [HttpGet]
-        public ActionResult Add(string noteId) //showing note for editing to movie
-        {
-            Movie movie = dal.GetMovie(noteId);
-            ViewBag.Movie = movie;
+        //    return View();
+        //}
+        //[HttpGet]
+        //public ActionResult Add(string noteId) //showing note for editing to movie
+        //{
+        //    Movie movie = dal.GetMovie(noteId);
+        //    ViewBag.Movie = movie;
 
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Add(Movie movie, int? Mark) 
-        {
-            if (Mark != null)
-                movie.Mark = Mark.ToString();
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult Add(Movie movie, int? Mark) 
+        //{
+        //    if (Mark != null)
+        //        movie.Mark = Mark.ToString();
 
-            movie.UserId = User.Identity.GetUserId();
-            movie.NotedDate = DateTime.Now;
+        //    movie.UserId = User.Identity.GetUserId();
+        //    movie.NotedDate = DateTime.Now;
 
-            dal.AddMovie(movie);
+        //    dal.AddMovie(movie);
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
-        [HttpPost]
-        public ActionResult Update(Movie movie, int? Mark)
-        {
-            if (Mark != null)
-                movie.Mark = Mark.ToString();
+        //[HttpPost]
+        //public ActionResult Update(Movie movie, int? Mark)
+        //{
+        //    if (Mark != null)
+        //        movie.Mark = Mark.ToString();
 
-            movie.NotedDate = DateTime.Now;
-            movie.UserId = User.Identity.GetUserId();
-            dal.UpdateMovieFromNote(movie);
+        //    movie.NotedDate = DateTime.Now;
+        //    movie.UserId = User.Identity.GetUserId();
+        //    dal.UpdateMovieFromNote(movie);
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
-        public ActionResult Delete(string noteId)
-        {
-            if (noteId != null)
-            {
-                Movie movie = dal.GetMovie(noteId);
-                dal.DeleteMovie(movie);
-            }
+        //public ActionResult Delete(string noteId)
+        //{
+        //    if (noteId != null)
+        //    {
+        //        Movie movie = dal.GetMovie(noteId);
+        //        dal.DeleteMovie(movie);
+        //    }
                 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
     }
 }

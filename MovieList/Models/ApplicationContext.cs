@@ -10,8 +10,10 @@ namespace MovieList.Models
             //this.Configuration.ProxyCreationEnabled = false;
         }
 
+        public DbSet<Note> Notes { get; set; }
         public DbSet<Movie> Movies { get; set; }
-      //  public DbSet<ApplicationUser> AppUsers { get; set; }
+
+        //  public DbSet<ApplicationUser> AppUsers { get; set; }
 
         public static ApplicationContext Create()
         {

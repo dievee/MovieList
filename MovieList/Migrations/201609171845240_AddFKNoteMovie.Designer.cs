@@ -7,13 +7,13 @@ namespace MovieList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddNotedDateField : IMigrationMetadata
+    public sealed partial class AddFKNoteMovie : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddNotedDateField));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFKNoteMovie));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608221830043_AddNotedDateField"; }
+            get { return "201609171845240_AddFKNoteMovie"; }
         }
         
         string IMigrationMetadata.Source

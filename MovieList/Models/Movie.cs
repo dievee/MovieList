@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MovieList.Models
 {
@@ -11,11 +12,8 @@ namespace MovieList.Models
         public string IMDBRating { get; set; }
         public string EventDate { get; set; }
         public string IMDBLink { get; set; }
-        public string Comment { get; set; }
-        public string Mark { get; set; }
-        public DateTime? NotedDate { get; set; }
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
+
+        public IEnumerable<Note> Notes { get; set; }
     }
 
     public class SearchMovie
@@ -24,3 +22,8 @@ namespace MovieList.Models
         public int Year { get; set; }
     }
 }
+//public string Comment { get; set; }
+//public string Mark { get; set; }
+//public DateTime? NotedDate { get; set; }
+//public string UserId { get; set; }
+//public ApplicationUser User { get; set; }
