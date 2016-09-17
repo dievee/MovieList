@@ -20,5 +20,10 @@ namespace MovieList.Controllers
 
             return View();
         }
+
+        public void FastAdditionOfAMovie(int movieId)
+        {
+            dal.AddMovieByFastAddition(movieId);
+        }
     }
 }

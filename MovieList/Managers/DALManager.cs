@@ -23,6 +23,13 @@ namespace MovieList.Managers
             db.SaveChanges();
         }
 
+        public void AddMovieByFastAddition(int movieId)
+        {
+            Movie movie = (from moviedb in db.Movies
+                          where moviedb.MovieId == movieId
+                          select moviedb).Single() as Movie;
+        }
+
         public void DeleteMovie(Movie movie)
         {
             db.Movies.Remove(movie);
@@ -155,6 +162,7 @@ namespace MovieList.Managers
 
             return query.ToList();
         }
+
 
     }
 }
