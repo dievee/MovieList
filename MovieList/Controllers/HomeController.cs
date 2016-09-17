@@ -8,69 +8,69 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
 {
     public class HomeController : BaseController
     {
-        // GET: Home
-        //public ActionResult Index(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        List<Movie> movies = dal.GetMoviesFull();
-        //        ViewBag.Movies = movies;
-        //    }
-        //    else
-        //    {
-        //        if ( id == User.Identity.GetUserId() )
-        //        {
-        //            ApplicationUser user = dal.GetUserInfo(id);
-        //            List<Movie> movies = dal.GetMovies(id);
-        //            List<Movie> notes = dal.GetNotes(id);
+        public ActionResult Index(string id)
+        {
+            if (id == null)
+            {
+                List<Note> notes = dal.GetNotes();
+                ViewBag.Notes = notes;
 
-        //            ViewBag.User = user;
-        //            ViewBag.Movies = movies;
-        //            ViewBag.Notes = notes;
-        //        }
-        //    }
-                
+            }
+            else
+            {
+                if (id == User.Identity.GetUserId())
+                {
+                    //ApplicationUser user = dal.GetUserInfo(id);
+                    //List<Movie> movies = dal.GetMoviesByUserId(id);
+                    List<Note> notes = dal.GetNotesByUserId(id);  
 
-        //    return View();
-        //}
+                    //ViewBag.User = user;
+                    //ViewBag.Movies = movies;
+                    ViewBag.Notes = notes;
+                }
+            }
 
-        //[HttpGet]
-        //public ActionResult Search(string IMDBLink)
-        //{
-        //    if (IMDBLink != null)
-        //    {
-        //        string id = prs.GetMovieIdFromLink(IMDBLink);
-        //        Movie movie = imdb.GetMovieById(id);
-        //        ViewBag.movie = movie;
-        //     }
 
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult Search(string movieTitle, string movieYear, string type)
-        //{
-        //    Movie movie = imdb.GetMovie(movieTitle, movieYear);
-        //    movie.Type = type;
-        //    ViewBag.Movie = movie;
+            return View();
+        }
 
-        //    return View();
-        //}
+        [HttpGet]
+        public ActionResult Search(string IMDBLink)
+        {
+            if (IMDBLink != null)
+            {
+                string id = prs.GetMovieIdFromLink(IMDBLink);
+                Movie movie = imdb.GetMovieById(id);
+                ViewBag.movie = movie;
+            }
 
-        //[HttpGet]
-        //public ActionResult AdvancedSearch()
-        //{
-            
-        //    return View();
-        //}
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Search(string movieTitle, string movieYear, string type)
+        {
+            Movie movie = imdb.GetMovie(movieTitle, movieYear);
+            movie.Type = type;
+            ViewBag.Movie = movie;
 
-        //[HttpPost]
-        //public ActionResult AdvancedSearch(string movieTitle, string movieYear, string type)  // search by s attribute
-        //{
-        //    List<Movie> movies = imdb.GetMoviesByAdvancedSearch(movieTitle, movieYear, type); // TODO: Add Error message to list if errror
-        //    ViewBag.Movies = movies;
-            
-        //    return View();
-        //}
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult AdvancedSearch()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdvancedSearch(string movieTitle, string movieYear, string type)  // search by s attribute
+        {
+            List<Movie> movies = imdb.GetMoviesByAdvancedSearch(movieTitle, movieYear, type); // TODO: Add Error message to list if errror
+            ViewBag.Movies = movies;
+
+            return View();
+        }
         //[HttpGet]
         //public ActionResult Add(string noteId) //showing note for editing to movie
         //{
@@ -79,19 +79,18 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
 
         //    return View();
         //}
-        //[HttpPost]
-        //public ActionResult Add(Movie movie, int? Mark) 
-        //{
-        //    if (Mark != null)
-        //        movie.Mark = Mark.ToString();
+        [HttpPost]
+        public ActionResult Add(Note note, int? Mark)
+        {
+            if (Mark != null)
+                note.Mark = Mark.ToString();
 
-        //    movie.UserId = User.Identity.GetUserId();
-        //    movie.NotedDate = DateTime.Now;
+            note.UserId = User.Identity.GetUserId();
 
-        //    dal.AddMovie(movie);
+            dal.AddNote(note);
 
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
 
         //[HttpPost]
         //public ActionResult Update(Movie movie, int? Mark)
@@ -113,7 +112,7 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
         //        Movie movie = dal.GetMovie(noteId);
         //        dal.DeleteMovie(movie);
         //    }
-                
+
         //    return RedirectToAction("Index");
         //}
 

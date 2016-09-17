@@ -11,6 +11,36 @@ namespace MovieList.Managers
     {
         private ApplicationContext db = new ApplicationContext();
 
+        public List<Note> GetNotes()
+        {
+            var query = from notes in db.Notes
+                        select notes;
+
+            return query.ToList();
+        }
+
+        public List<Note> GetNotesByUserId(string id)
+        {
+            var query = from notes in db.Notes
+                        where notes.UserId == id
+                        select notes;
+
+            return query.ToList();
+        }
+        public List<Movie> GetMoviesByUserId(string id)
+        {
+            var query = from notes in db.Notes
+                        where notes.UserId == id
+                        select notes.Movie;
+
+            return query.ToList();
+        }
+        public void AddNote(Note note)
+        {
+            db.Notes.Add(note);
+            db.SaveChanges();
+        }
+
         //public void UpdateMovieFromNote(Movie movie)
         //{
         //    db.Entry(movie).State = EntityState.Modified;
@@ -144,7 +174,7 @@ namespace MovieList.Managers
 
         //    return query.Single() as Movie;
         //}
-        
+
         //public List<Movie> GetMoviesByTitle(string title) // TODO: Add filtration search result( do not show not own user's notes)
         //{
         //    var query = from moviesdb in db.Movies
