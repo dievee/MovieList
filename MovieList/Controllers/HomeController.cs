@@ -10,27 +10,20 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
     {
         public ActionResult Index(string id)
         {
-            if (id == null)
-            {
-                List<Note> notes = dal.GetNotes();
-                ViewBag.Notes = notes;
+            //ApplicationUser user = dal.GetUserInfo(id);
+            //ViewBag.User = user;
+            List<Note> notes;
 
-            }
+            if (id == User.Identity.GetUserId())
+            {
+                notes = dal.GetNotesByUserId(id);
+                List<Movie> movies = dal.GetMoviesByUserId(id);
+                ViewBag.Movies = movies;
+            } 
             else
-            {
-                if (id == User.Identity.GetUserId())
-                {
-                    //ApplicationUser user = dal.GetUserInfo(id);
-                    //List<Movie> movies = dal.GetMoviesByUserId(id);
-                    List<Note> notes = dal.GetNotesByUserId(id);  
-
-                    //ViewBag.User = user;
-                    //ViewBag.Movies = movies;
-                    ViewBag.Notes = notes;
-                }
-            }
-
-
+                notes = dal.GetNotes();
+            
+            ViewBag.Notes = notes;
             return View();
         }
 
@@ -80,7 +73,7 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
         //    return View();
         //}
         [HttpPost]
-        public ActionResult Add(Note note, int? Mark)
+        public ActionResult AddNote(Note note, int? Mark)
         {
             if (Mark != null)
                 note.Mark = Mark.ToString();

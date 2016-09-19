@@ -22,11 +22,11 @@
     @if(ViewBag.User == null)
     { 
         <div class="row">
-            @foreach (var b in ViewBag.Movies )
+            @foreach (var b in ViewBag.Notes )
             {
                 <div class="notation">
                     <div class="title">
-                        <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
+                        <h4><a href="@b.Movie.IMDBLink" style="color: black;">@b.Movies.Title (@b.EventDate)</a> </h4>
                     </div>
                     <div class="poster">
                         <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
@@ -34,7 +34,7 @@
 
                     <div class="author">
                         <div class="authorname">
-                            <a> @b.UserName </a>    
+                            @*<a> @b.UserName </a>*@    
                         </div>              
                         <div class="mark">
                             @if (b.Mark != null)
@@ -57,7 +57,7 @@
                             <a>imdb:@b.IMDBRating</a>
                         </div> 
                        <div class="date">
-                           <a>@b.NotedDate.ToString("dd/MM/yyyy")</a>
+                           @*<a>@b.NotedDate.ToString("dd/MM/yyyy")</a>*@
                        </div>
                        
                         <div class="comment">
@@ -79,7 +79,7 @@
     }
     else
     {
-        <div class="row">
+        @*<div class="row">
             <h3>Saved movies: @ViewBag.Movies.Count</h3>
             <div class="col-md-11 col-centered profile">
                  <div class="photo">
@@ -97,16 +97,13 @@
 
                         @Html.ValidationSummary()
                         <div class="form-group">
-                            @* <input type="search" id="search">*@
-                            @*@Html.Editor("title")*@
                             @Html.Editor("title", new { @class = "form-control input-sm", @id = "inputsm" })
-                            @*<input class="form-control input-sm" id="inputsm" type="search" />*@
                         </div>
                         <button type="submit" class="btn btn-default" style="display: none; ">Search</button>
                     </form>
                 }
             </div>
-        </div>
+        </div>*@
         <h3>My movies</h3>
         <div class="row">
             @foreach (var b in ViewBag.Movies)
@@ -116,14 +113,17 @@
                         <div style="display: inline-block;">
                             <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
                         </div>
-                        @*<div style="width: 16px; height: 16px; display: inline-block; padding: 0; margin: 0; float: right;">
-                            <img style="width: 16px;" src="http://s1.iconbird.com/ico/0612/GooglePlusInterfaceIcons/w128h1281338911337cross.png" />
-                        </div>*@
                         <div class="deletenote">
-                            <a href="@Url.Action("Delete", new { noteId = b.MovieId })">
+                            <a href="@Url.Action("Delete", new { movieId = b.MovieId })">
                                 <img src="~/Content/Images/delete.png" />
                             </a>
                         </div>
+                            <div class="addnote">
+                                <a href="@Url.Action("Add", new { movieId = b.MovieId })">
+                                    <img src="~/Content/Images/add.png" />
+                                </a>
+                            </div>
+                        
                     </div>
                     <div class="poster">
                         <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
@@ -131,9 +131,9 @@
                     
                     <div class="author">
                         <div class="authorname">
-                            <a> @b.UserName </a>
+                            @*<a> @b.UserName </a>*@
                         </div>
-                        <div class="mark">
+                        @*<div class="mark">
                             @if (b.Mark != null)
                             {
                                 for (int i = 0; i < Int32.Parse(b.Mark); i++)
@@ -149,14 +149,14 @@
                                     </div>
                                 }
                             }
-                        </div>
+                        </div>*@
                         <div class="rating">
                             <a>imdb:@b.IMDBRating</a>
                         </div> 
                         <div class="date">
-                            <a>@b.NotedDate.ToString("dd/MM/yyyy")</a>
+                            @*<a>@b.NotedDate.ToString("dd/MM/yyyy")</a>*@
                         </div>
-                        <div class="comment">
+                        @*<div class="comment">
                             @if (b.Comment.Length > 220)
                             {
                                 @b.Comment.Substring(0, 220)
@@ -166,7 +166,7 @@
                             {
                                 @b.Comment
                             }
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             }
@@ -185,11 +185,6 @@
                                 <img src="~/Content/Images/delete.png" />
                             </a>
                         </div>
-                        <div class="addnote">
-                            <a href="@Url.Action("Add", new { noteId = b.MovieId })">
-                                <img src="~/Content/Images/add.png" />
-                            </a>
-                        </div>
 
                     </div>
                     <div class="poster">
@@ -200,7 +195,7 @@
                         <a>imdb:@b.IMDBRating</a>
                         <br />
                         <div class="date">
-                            <a>@b.NotedDate.ToString("dd/MM/yyyy")</a>
+                            @*<a>@b.NotedDate.ToString("dd/MM/yyyy")</a>*@
                         </div>
                         <div class="comment">
                             @if (b.Comment.Length > 220)

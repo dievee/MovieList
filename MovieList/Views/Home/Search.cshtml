@@ -73,7 +73,7 @@
                                     @ViewBag.movie.Description
                                 </div>
                                 <div class="comment">
-                                    @using (Html.BeginForm("Add", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                    @using (Html.BeginForm("AddNote", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                     {
                                         @Html.HiddenFor(m => m.Title, new { Value = (string)ViewBag.movie.Title })
                                         @Html.HiddenFor(m => m.Poster, new { Value = (string)ViewBag.movie.Poster })

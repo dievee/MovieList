@@ -14,9 +14,10 @@ namespace MovieList.Managers
         public List<Note> GetNotes()
         {
             var query = from notes in db.Notes
-                        select notes;
+                        join movies in db.Movies on notes.MovieId equals movies.MovieId
+                        select new { notes, movies };
 
-            return query.ToList();
+            return null;
         }
 
         public List<Note> GetNotesByUserId(string id)
@@ -37,8 +38,47 @@ namespace MovieList.Managers
         }
         public void AddNote(Note note)
         {
+            AddMovieIfNotExists(note);
+            int movieId = GetMovieId(note.IMDBLink);
+            note.MovieId = movieId;
             db.Notes.Add(note);
             db.SaveChanges();
+        }
+        public  void AddMovieIfNotExists(Note note)
+        {
+            try
+            {
+                Movie movie = (from movies in db.Movies
+                               where movies.IMDBLink == note.IMDBLink
+                               select movies).Single();
+            }
+            catch(InvalidOperationException)
+            {
+                AddMovieFromNote(note);
+            }
+
+        }
+        public void AddMovieFromNote(Note note)
+        {
+            Movie movie = new Movie()
+            {
+                Poster = note.Poster,
+                Title = note.Title,
+                Description = note.Description,
+                IMDBLink = note.IMDBLink,
+                EventDate = note.EventDate,
+                IMDBRating = note.IMDBRating
+            };
+            db.Movies.Add(movie);
+            db.SaveChanges();
+        }
+        public int GetMovieId(string IMDBLink)
+        {
+            var query = (from movies in db.Movies
+                         where movies.IMDBLink == IMDBLink
+                         select movies.MovieId).Single();
+
+            return query;
         }
 
         //public void UpdateMovieFromNote(Movie movie)

@@ -976,6 +976,10 @@
     <Compile Include="Migrations\201609171845240_AddFKNoteMovie.Designer.cs">
       <DependentUpon>201609171845240_AddFKNoteMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609191453530_AddFKUserMovie.cs" />
+    <Compile Include="Migrations\201609191453530_AddFKUserMovie.Designer.cs">
+      <DependentUpon>201609191453530_AddFKUserMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -1034,6 +1038,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609171845240_AddFKNoteMovie.resx">
       <DependentUpon>201609171845240_AddFKNoteMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609191453530_AddFKUserMovie.resx">
+      <DependentUpon>201609191453530_AddFKUserMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
