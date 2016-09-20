@@ -7,13 +7,13 @@ namespace MovieList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddFKUserMovie : IMigrationMetadata
+    public sealed partial class UpdateUserProfile : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFKUserMovie));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateUserProfile));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609191453530_AddFKUserMovie"; }
+            get { return "201609201632089_UpdateUserProfile"; }
         }
         
         string IMigrationMetadata.Source
