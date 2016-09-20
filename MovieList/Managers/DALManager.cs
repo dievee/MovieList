@@ -110,12 +110,7 @@ namespace MovieList.Managers
         //    db.SaveChanges();
         //}
 
-        //public void AddMovieByFastAddition(int movieId)
-        //{
-        //    Movie movie = (from moviedb in db.Movies
-        //                  where moviedb.MovieId == movieId
-        //                  select moviedb).Single() as Movie;
-        //}
+        
 
         //public void DeleteMovie(Movie movie)
         //{
@@ -241,14 +236,21 @@ namespace MovieList.Managers
         //    return query.ToList();
         //}
 
-        //public List<Movie> GetMostPopularMovies(int count = 7, int startIndex = 0 ) // default: get (7) movies, first movie have index in db (0)
-        //{
-        //    var query = (from moviesdb in db.Movies
-        //                orderby moviesdb.MovieId
-        //                select moviesdb).Skip(startIndex).Take(count);
+        public List<Movie> GetMostPopularMovies(int count = 7, int startIndex = 0) // default: get (7) movies, first movie have index in db (0)
+        {
+            var query = (from moviesdb in db.Movies
+                         orderby moviesdb.MovieId
+                         select moviesdb).Skip(startIndex).Take(count);
 
-        //    return query.ToList();
-        //}
+            return query.ToList();
+        }
+
+        public void AddMovieByFastAddition(int movieId)
+        {
+            Movie movie = (from moviedb in db.Movies
+                           where moviedb.MovieId == movieId
+                           select moviedb).Single() as Movie;
+        }
 
 
     }
