@@ -10,16 +10,14 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
     {
         public ActionResult Index(string id)
         {
-            //ApplicationUser user = dal.GetUserInfo(id);
-            //ViewBag.User = user;
             List<Note> notes;
 
             if (id == User.Identity.GetUserId())
             {
                 notes = dal.GetNotesByUserId(id);
-                List<Movie> movies = dal.GetMoviesByUserId(id);
-                ViewBag.Movies = movies;
-            } 
+                ViewBag.Movies = dal.GetMoviesByUserId(id) as List<Movie>;
+                ViewBag.User = dal.GetUserInfo(id) as ApplicationUser;
+            }
             else
                 notes = dal.GetNotes();
             

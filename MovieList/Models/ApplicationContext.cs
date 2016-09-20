@@ -19,5 +19,10 @@ namespace MovieList.Models
         {
             return new ApplicationContext();
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Note>().Ignore(c => c.MovieId);
+        //}
     }
 }

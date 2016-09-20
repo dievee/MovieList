@@ -126,7 +126,7 @@ namespace MovieList.Managers
                     }
                 }
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 return null;
             }

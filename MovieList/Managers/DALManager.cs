@@ -13,11 +13,20 @@ namespace MovieList.Managers
 
         public List<Note> GetNotes()
         {
-            var query = from notes in db.Notes
-                        join movies in db.Movies on notes.MovieId equals movies.MovieId
-                        select new { notes, movies };
+            Note note;
+            List<Note> notes = new List<Note>();
+            var query = from notesdb in db.Notes
+                        join movies in db.Movies on notesdb.MovieId equals movies.MovieId
+                        select new { notesdb, movies };
 
-            return null;
+            foreach (var i in query)
+            {
+                note = i.notesdb;
+                note.Movie = i.movies;
+                notes.Add(note);          
+            }
+
+            return notes;
         }
 
         public List<Note> GetNotesByUserId(string id)
@@ -81,6 +90,14 @@ namespace MovieList.Managers
             return query;
         }
 
+        public ApplicationUser GetUserInfo(string id)
+        {
+            var query = (from users in db.Users
+                        where users.Id == id
+                        select users);
+
+            return query as ApplicationUser;
+        }
         //public void UpdateMovieFromNote(Movie movie)
         //{
         //    db.Entry(movie).State = EntityState.Modified;

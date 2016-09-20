@@ -26,10 +26,10 @@
             {
                 <div class="notation">
                     <div class="title">
-                        <h4><a href="@b.Movie.IMDBLink" style="color: black;">@b.Movies.Title (@b.EventDate)</a> </h4>
+                        <h4><a href="@b.Movie.IMDBLink" style="color: black;">@b.Movie.Title (@b.Movie.EventDate)</a> </h4>
                     </div>
                     <div class="poster">
-                        <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
+                        <a href="@b.Movie.IMDBLink"><img src="@b.Movie.Poster" /></a>
                     </div>
 
                     <div class="author">
@@ -54,7 +54,7 @@
                             }
                         </div> 
                         <div class="rating">
-                            <a>imdb:@b.IMDBRating</a>
+                            <a>imdb:@b.Movie.IMDBRating</a>
                         </div> 
                        <div class="date">
                            @*<a>@b.NotedDate.ToString("dd/MM/yyyy")</a>*@
@@ -178,7 +178,7 @@
                 <div class="notation">
                     <div class="title">
                         <div style="display: inline-block;">
-                            <h4><a href="@b.IMDBLink" style="color: black;">@b.Title (@b.EventDate)</a> </h4>
+                            <h4><a href="@b.Movie.IMDBLink" style="color: black;">@b.Movie.Title (@b.Movie.EventDate)</a> </h4>
                         </div>
                         <div class="deletenote">
                             <a href="@Url.Action("Delete", new { noteId = b.MovieId })">
@@ -188,11 +188,11 @@
 
                     </div>
                     <div class="poster">
-                        <a href="@b.IMDBLink"><img src="@b.Poster" /></a>
+                        <a href="@b.Movie.IMDBLink"><img src="@b.Movie.Poster" /></a>
                     </div>
 
                     <div class="author">
-                        <a>imdb:@b.IMDBRating</a>
+                        <a>imdb:@b.Movie.IMDBRating</a>
                         <br />
                         <div class="date">
                             @*<a>@b.NotedDate.ToString("dd/MM/yyyy")</a>*@

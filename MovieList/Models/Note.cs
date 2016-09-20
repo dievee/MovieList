@@ -28,14 +28,3 @@ namespace MovieList.Models
         public string IMDBLink { get; set; }
     }
 }
-
-//public int MovieId { get; set; }
-//public string Poster { get; set; }
-//public string Title { get; set; }
-//public string Description { get; set; }
-//public string IMDBRating { get; set; }
-//public string EventDate { get; set; }
-//public string IMDBLink { get; set; }
-
-//public string AuthorUserName { get; set; }
-//public string AuthorId { get; set; }
