@@ -85,6 +85,8 @@
                                         <br />
                                         @Html.TextAreaFor(m => m.Comment, new { @id = "comment", @placeholder = "Comment", @rows = 5, @class = "form-control" })
                                         <br />
+                                        @Html.RadioButton("Islooked", false, new { Checked = "checked" } )<label >Not looked</label>
+                                        @Html.RadioButton("IsLooked", true )<label >Looked</label>
 
                                             <div class="ratinggroup" style="width: 150px; height: 50px; margin: auto;">
                                                 <fieldset class="rating">

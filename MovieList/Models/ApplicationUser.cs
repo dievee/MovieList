@@ -10,5 +10,7 @@ namespace MovieList.Models
 
         public IEnumerable<Note> Notes { get; set; }
         public IEnumerable<Movie> Movies { get; set; }
+
+        public virtual ICollection<UserMovie> UserMovies { get; set; }
     }
 }

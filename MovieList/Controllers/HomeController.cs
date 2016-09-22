@@ -71,13 +71,12 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
         //    return View();
         //}
         [HttpPost]
-        public ActionResult AddNote(Note note, int? Mark)
+        public ActionResult AddNote(Note note, int? Mark, bool IsLooked)
         {
             if (Mark != null)
                 note.Mark = Mark.ToString();
-
+            note.IsLooked = IsLooked;
             note.UserId = User.Identity.GetUserId();
-
             dal.AddNote(note);
 
             return RedirectToAction("Index");

@@ -14,8 +14,9 @@ namespace MovieList.Models
         public string IMDBLink { get; set; }
 
         public IEnumerable<Note> Notes { get; set; }
-
         public IEnumerable<ApplicationUser> Users { get; set; }
+
+        public virtual ICollection<UserMovie> UserMovies { get; set; }
     }
 
     public class SearchMovie
