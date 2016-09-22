@@ -7,6 +7,7 @@ namespace MovieList.Models
   
         public string Comment { get; set; }
         public string Mark { get; set; }
+        public bool IsLooked { get; set; }
 
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }

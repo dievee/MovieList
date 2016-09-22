@@ -10,7 +10,10 @@ namespace MovieList.Managers
     public class DALManager
     {
         private ApplicationContext db = new ApplicationContext();
-
+        public void SaveChanges()
+        {
+            db.SaveChanges();
+        }
         public List<Note> GetNotes()
         {
             Note note;
@@ -115,11 +118,6 @@ namespace MovieList.Managers
         //public void DeleteMovie(Movie movie)
         //{
         //    db.Movies.Remove(movie);
-        //    db.SaveChanges();
-        //}
-
-        //public void SaveChanges()
-        //{
         //    db.SaveChanges();
         //}
 

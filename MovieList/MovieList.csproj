@@ -980,6 +980,10 @@
     <Compile Include="Migrations\201609201632089_UpdateUserProfile.Designer.cs">
       <DependentUpon>201609201632089_UpdateUserProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609221916364_AddIsLookedField.cs" />
+    <Compile Include="Migrations\201609221916364_AddIsLookedField.Designer.cs">
+      <DependentUpon>201609221916364_AddIsLookedField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -990,6 +994,7 @@
     <Compile Include="Models\MovieFull.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\UserMovies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1041,6 +1046,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609201632089_UpdateUserProfile.resx">
       <DependentUpon>201609201632089_UpdateUserProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609221916364_AddIsLookedField.resx">
+      <DependentUpon>201609221916364_AddIsLookedField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
