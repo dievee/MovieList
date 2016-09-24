@@ -77,7 +77,7 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
                 note.Mark = Mark.ToString();
             note.IsLooked = IsLooked;
             note.UserId = User.Identity.GetUserId();
-            dal.AddNote(note);
+            dal.AddNote(note, note.UserId, IsLooked);
 
             return RedirectToAction("Index");
         }

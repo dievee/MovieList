@@ -14,6 +14,17 @@ namespace MovieList.Managers
         {
             db.SaveChanges();
         }
+        public void AddBindUserMovie(int movieId, string userId, bool isLooked)
+        {
+            UserMovie usermovie = new UserMovie()
+            {
+                UserId = userId,
+                MovieId = movieId,
+                IsLooked = isLooked
+            };
+            db.UserMovies.Add(usermovie);
+            db.SaveChanges();
+        }
         public List<Note> GetNotes()
         {
             Note note;
@@ -48,13 +59,15 @@ namespace MovieList.Managers
 
             return query.ToList();
         }
-        public void AddNote(Note note)
+        public void AddNote(Note note, string userId, bool isLooked)
         {
             AddMovieIfNotExists(note);
             int movieId = GetMovieId(note.IMDBLink);
             note.MovieId = movieId;
             db.Notes.Add(note);
             db.SaveChanges();
+
+            AddBindUserMovie(movieId, userId, isLooked);
         }
         public  void AddMovieIfNotExists(Note note)
         {
