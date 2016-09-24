@@ -79,8 +79,8 @@
     }
     else
     {
-        @*<div class="row">
-            <h3>Saved movies: @ViewBag.Movies.Count</h3>
+        <div class="row">
+            @*<h3>Saved movies: @ViewBag.Movies.Count</h3>*@
             <div class="col-md-11 col-centered profile">
                  <div class="photo">
                      <img src="http://img1.reactor.cc/pics/post/Dota-zoidberg-Leviathan-the-Tidehunter-609169.jpeg" />
@@ -88,22 +88,12 @@
                  <div class="info">
                      <p>@ViewBag.User.Id</p>
                      <p>@ViewBag.User.Email</p>
-                     <p>@ViewBag.User.UserName</p>
+                     <p>@ViewBag.User.NickName</p>
+                     <p>@ViewBag.User.Status</p>
                  </div>
-                @using (Html.BeginForm("Result", "Search", FormMethod.Get))
-                {
-                    @Html.AntiForgeryToken()
-                    <form class="form-inline">
 
-                        @Html.ValidationSummary()
-                        <div class="form-group">
-                            @Html.Editor("title", new { @class = "form-control input-sm", @id = "inputsm" })
-                        </div>
-                        <button type="submit" class="btn btn-default" style="display: none; ">Search</button>
-                    </form>
-                }
             </div>
-        </div>*@
+        </div>
         <h3>My movies</h3>
         <div class="row">
             @foreach (var b in ViewBag.Movies)

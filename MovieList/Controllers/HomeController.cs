@@ -15,8 +15,8 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
             if (id == User.Identity.GetUserId())
             {
                 notes = dal.GetNotesByUserId(id);
-                ViewBag.Movies = dal.GetMoviesByUserId(id) as List<Movie>;
-                ViewBag.User = dal.GetUserInfo(id) as ApplicationUser;
+                ViewBag.Movies = dal.GetMoviesByUserId(id);
+                ViewBag.User = dal.GetUserInfo(id);
             }
             else
                 notes = dal.GetNotes();

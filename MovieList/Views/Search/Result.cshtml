@@ -1,6 +1,4 @@
-﻿@using Microsoft.AspNet.Identity;   @*TODO: fix html css*@
-@using MovieList.Models;
-<head>
+﻿<head>
     <link href="~/Content/css/listofmoviesdcss" rel="stylesheet" type="text/css" />
     <link href="~/Content/css/UserProfile.css" rel="stylesheet" type="text/css" />
     <style>
@@ -29,44 +27,11 @@
                     </div>
 
                     <div class="author">
-                        <div class="authorname">
-                            <a> @b.UserName </a>
-                        </div>
-                        <div class="mark">
-                            @if (b.Mark != null)
-                            {
-                                for (int i = 0; i < Int32.Parse(b.Mark); i++)
-                                {
-                                    <div style="display: inline-block;">
-                                        <img src="~/Content/Images/star_gold_small.png" />
-                                    </div>
-                                }
-                                for (int j = 0; j < 5 - Int32.Parse(b.Mark); j++)
-                                {
-                                    <div style="display: inline-block;">
-                                        <img src="~/Content/Images/star_gray_small.png" />
-                                    </div>
-                                }
-                            }
-                        </div>
+
                         <div class="rating">
                             <a>imdb:@b.IMDBRating</a>
                         </div>
-                        <div class="date">
-                            <a>@b.NotedDate.ToString("dd/MM/yyyy")</a>
-                        </div>
 
-                        <div class="comment">
-                            @if (b.Comment.Length > 220)
-                            {
-                                @b.Comment.Substring(0, 220)
-                                <a>...</a>
-                            }
-                            else
-                            {
-                                @b.Comment
-                            }
-                        </div>
                     </div>
 
                 </div>

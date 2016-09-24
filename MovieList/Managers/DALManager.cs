@@ -108,11 +108,11 @@ namespace MovieList.Managers
 
         public ApplicationUser GetUserInfo(string id)
         {
-            var query = (from users in db.Users
-                        where users.Id == id
-                        select users);
+            var query = (from u in db.Users
+                         where u.Id.Equals(id)
+                         select u);
 
-            return query as ApplicationUser;
+            return query.Single() as ApplicationUser;
         }
         //public void UpdateMovieFromNote(Movie movie)
         //{
@@ -126,7 +126,7 @@ namespace MovieList.Managers
         //    db.SaveChanges();
         //}
 
-        
+
 
         //public void DeleteMovie(Movie movie)
         //{
@@ -211,15 +211,6 @@ namespace MovieList.Managers
         //    return query;
         //}
 
-        //public ApplicationUser GetUserInfo(string id)
-        //{
-        //    var query = (from u in db.Users
-        //                 where u.Id.Equals(id)
-        //                 select u);
-
-        //    return query.Single() as ApplicationUser;
-        //}
-
         //public int GetCountOfMovies(string id)
         //{
         //    var query = (from movies in db.Movies
@@ -238,14 +229,14 @@ namespace MovieList.Managers
         //    return query.Single() as Movie;
         //}
 
-        //public List<Movie> GetMoviesByTitle(string title) // TODO: Add filtration search result( do not show not own user's notes)
-        //{
-        //    var query = from moviesdb in db.Movies
-        //                where moviesdb.Title.Contains(title)  // && moviesdb.Mark != null
-        //                select moviesdb;
+        public List<Movie> GetMoviesByTitle(string title) 
+        {
+            var query = from moviesdb in db.Movies
+                        where moviesdb.Title.Contains(title) 
+                        select moviesdb;
 
-        //    return query.ToList();
-        //}
+            return query.ToList();
+        }
 
         public List<Movie> GetMostPopularMovies(int count = 7, int startIndex = 0) // default: get (7) movies, first movie have index in db (0)
         {
