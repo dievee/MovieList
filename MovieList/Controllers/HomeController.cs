@@ -17,6 +17,7 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
                 notes = dal.GetNotesByUserId(id);
                 ViewBag.Movies = dal.GetMoviesByUserId(id);
                 ViewBag.User = dal.GetUserInfo(id);
+                //ViewBag.NotLooked = dal.GetNotLookedMovies(id);
             }
             else
                 notes = dal.GetNotes();
@@ -95,16 +96,13 @@ namespace MovieList.Controllers  // TODO: add filtration to search method
         //    return RedirectToAction("Index");
         //}
 
-        //public ActionResult Delete(string noteId)
-        //{
-        //    if (noteId != null)
-        //    {
-        //        Movie movie = dal.GetMovie(noteId);
-        //        dal.DeleteMovie(movie);
-        //    }
+        public ActionResult Delete(int noteId)
+        {
+            Note note = dal.GetNote(noteId);
+            dal.DeleteNote(note);
 
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
 
     }
 }

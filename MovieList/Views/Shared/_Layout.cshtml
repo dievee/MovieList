@@ -1,6 +1,8 @@
-﻿@using Microsoft.AspNet.Identity;  @*TODO: add filtration searching data ( min 4 characters)*@
+﻿@using Microsoft.AspNet.Identity;
+@using MovieList.Managers;
 @{ 
-    string userId = User.Identity.GetUserId(); 
+    string userId = User.Identity.GetUserId();
+    DALManager dal = new DALManager();
  }
 
 <!DOCTYPE html>
@@ -23,7 +25,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li>
-                        @Html.ActionLink(@User.Identity.Name, "Index", "Home", new { id = userId }, null)
+                        @Html.ActionLink(dal.GetUserNickName(userId), "Index", "Home", new { id = userId }, null)
                     </li>
                     <li>
                         @Html.ActionLink("Logout", "Logout", "Account")

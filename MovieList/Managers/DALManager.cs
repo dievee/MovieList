@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 
 namespace MovieList.Managers
 {
@@ -14,6 +15,11 @@ namespace MovieList.Managers
         {
             db.SaveChanges();
         }
+
+
+        //Add..
+
+
         public void AddBindUserMovie(int movieId, string userId, bool isLooked)
         {
             UserMovie usermovie = new UserMovie()
@@ -25,6 +31,143 @@ namespace MovieList.Managers
             db.UserMovies.Add(usermovie);
             db.SaveChanges();
         }
+
+
+        //Add Note..
+
+
+        public void AddNote(Note note, string userId, bool isLooked)
+        {
+            AddMovieIfNotExists(note);
+            int movieId = GetMovieId(note.IMDBLink);
+            note.MovieId = movieId;
+            db.Notes.Add(note);
+            db.SaveChanges();
+
+            AddBindUserMovie(movieId, userId, isLooked);
+        }
+
+
+        //Add Movie..
+
+
+        public void AddMovieByFastAddition(int movieId)
+        {
+            Movie movie = (from moviedb in db.Movies
+                           where moviedb.MovieId == movieId
+                           select moviedb).Single() as Movie;
+            throw new Exception();
+        }
+        public void AddMovieIfNotExists(Note note)
+        {
+            try
+            {
+                Movie movie = (from movies in db.Movies
+                               where movies.IMDBLink == note.IMDBLink
+                               select movies).Single();
+            }
+            catch (InvalidOperationException)
+            {
+                AddMovieFromNote(note);
+            }
+        }
+        public void AddMovieFromNote(Note note)
+        {
+            Movie movie = new Movie()
+            {
+                Poster = note.Poster,
+                Title = note.Title,
+                Description = note.Description,
+                IMDBLink = note.IMDBLink,
+                EventDate = note.EventDate,
+                IMDBRating = note.IMDBRating
+            };
+            db.Movies.Add(movie);
+            db.SaveChanges();
+        }
+
+
+        //Get Movie..
+
+
+        public int GetMovieId(string IMDBLink)
+        {
+            var query = (from movies in db.Movies
+                         where movies.IMDBLink == IMDBLink
+                         select movies.MovieId).Single();
+
+            return query;
+        }
+        public List<Movie> GetMoviesByUserId(string id)
+        {
+            var query = from notes in db.Notes
+                        where notes.UserId == id
+                        select notes.Movie;
+
+            return query.ToList();
+        }
+        public List<Note> GetNotesByUserId(string id)
+        {
+            var query = from notes in db.Notes
+                        where notes.UserId == id
+                        select notes;
+
+            return query.ToList();
+        }
+        public List<Movie> GetMoviesByTitle(string title)
+        {
+            var query = from moviesdb in db.Movies
+                        where moviesdb.Title.Contains(title)
+                        select moviesdb;
+
+            return query.ToList();
+        }
+        public List<Movie> GetMostPopularMovies(int count = 7, int startIndex = 0) // default: get (7) movies, first movie have index in db (0)
+        {
+            var query = (from moviesdb in db.Movies
+                         orderby moviesdb.MovieId
+                         select moviesdb).Skip(startIndex).Take(count);
+
+            return query.ToList();
+        }
+        public List<Note> GetNotLookedMovies(string id)
+        {
+            Note note;
+            //List<Note> notes = new List<Note>();
+            var query = from notes in db.Notes
+                        where notes.UserId.Equals(id) && notes.IsLooked == false
+                        join usermovies in db.UserMovies on notes.UserId equals usermovies.UserId
+                        where usermovies.IsLooked == false
+                        select new
+                        {
+                            notes,
+                            usermovies
+                        };
+
+            foreach (var i in query)
+            {
+
+                //Movie movie = (from movies in db.Movies
+                //          where movies.MovieId.Equals(i.notesdb.MovieId)
+                //          select movies).Single();
+                //note.MovieId = movie.MovieId;
+                //note.Poster = movie.Poster;
+                Type curType = typeof(Movie);
+                FieldInfo[] properties = curType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
+                //foreach (var j in movie)
+                //{
+                //    note.j = 
+                //}
+                //note = i.usermovies;
+            }
+            throw new Exception();
+            return null;
+        }
+
+
+        //Get Note..
+
+
         public List<Note> GetNotes()
         {
             Note note;
@@ -42,70 +185,26 @@ namespace MovieList.Managers
 
             return notes;
         }
-
-        public List<Note> GetNotesByUserId(string id)
+        public Note GetNote(int noteId)
         {
-            var query = from notes in db.Notes
-                        where notes.UserId == id
-                        select notes;
+            var query = (from notes in db.Notes
+                         where notes.NoteId == noteId
+                         select notes).Single();
 
-            return query.ToList();
+            return query as Note;
         }
-        public List<Movie> GetMoviesByUserId(string id)
-        {
-            var query = from notes in db.Notes
-                        where notes.UserId == id
-                        select notes.Movie;
 
-            return query.ToList();
-        }
-        public void AddNote(Note note, string userId, bool isLooked)
-        {
-            AddMovieIfNotExists(note);
-            int movieId = GetMovieId(note.IMDBLink);
-            note.MovieId = movieId;
-            db.Notes.Add(note);
-            db.SaveChanges();
 
-            AddBindUserMovie(movieId, userId, isLooked);
-        }
-        public  void AddMovieIfNotExists(Note note)
-        {
-            try
-            {
-                Movie movie = (from movies in db.Movies
-                               where movies.IMDBLink == note.IMDBLink
-                               select movies).Single();
-            }
-            catch(InvalidOperationException)
-            {
-                AddMovieFromNote(note);
-            }
+        //Get User..
 
-        }
-        public void AddMovieFromNote(Note note)
-        {
-            Movie movie = new Movie()
-            {
-                Poster = note.Poster,
-                Title = note.Title,
-                Description = note.Description,
-                IMDBLink = note.IMDBLink,
-                EventDate = note.EventDate,
-                IMDBRating = note.IMDBRating
-            };
-            db.Movies.Add(movie);
-            db.SaveChanges();
-        }
-        public int GetMovieId(string IMDBLink)
-        {
-            var query = (from movies in db.Movies
-                         where movies.IMDBLink == IMDBLink
-                         select movies.MovieId).Single();
 
+        public string GetUserNickName(string userId)
+        {
+            var query = (from users in db.Users
+                         where users.Id == userId
+                         select users.NickName).Single();
             return query;
         }
-
         public ApplicationUser GetUserInfo(string id)
         {
             var query = (from u in db.Users
@@ -114,145 +213,31 @@ namespace MovieList.Managers
 
             return query.Single() as ApplicationUser;
         }
-        //public void UpdateMovieFromNote(Movie movie)
-        //{
-        //    db.Entry(movie).State = EntityState.Modified;
-        //    SaveChanges();
-        //}
-
-        //public void AddMovie(Movie movie)
-        //{
-        //    db.Movies.Add(movie);
-        //    db.SaveChanges();
-        //}
 
 
+        //Delete Note..
 
-        //public void DeleteMovie(Movie movie)
-        //{
-        //    db.Movies.Remove(movie);
-        //    db.SaveChanges();
-        //}
 
-        //public List<Movie> GetMovies(string id = null)
-        //{
-        //    if (id == null)
-        //    {
-        //        var query = from movies in db.Movies
-        //                    where movies.Mark != null
-        //                    select movies;
-        //        return query.ToList();
-        //    }
-        //    else
-        //    {
-        //        var query = (from movies in db.Movies
-        //                    where movies.UserId == id && movies.Mark != null
-        //                     select movies);
-        //        return query.ToList();
-        //    }
-        //}
-
-        //public List<Movie> GetMoviesFull(string id = null)
-        //{
-        //    Movie movie;
-        //    List<Movie> movies = new List<Movie>();
-        //    if (id == null)
-        //    {
-        //        var query = (from moviesdb in db.Movies
-        //                     where moviesdb.Mark != null
-        //                     join users in db.Users on moviesdb.UserId equals users.Id
-        //                    select new { moviesdb, users.UserName });
-        //        foreach(var i in query)
-        //        {
-        //            movie =  i.moviesdb ;
-        //            movie.UserName = i.UserName;
-
-        //            movies.Add(movie);
-        //        }
-
-        //        return movies;
-        //    }
-        //    else
-        //    {
-        //        var query = (from moviesdb in db.Movies
-        //                     where moviesdb.UserId == id && moviesdb.Mark != null
-        //                     join users in db.Users on moviesdb.UserId equals users.Id
-        //                     select new { moviesdb, users.UserName });
-
-        //        foreach (var i in query)
-        //        {
-        //            movie = i.moviesdb;
-        //            movie.UserName = i.UserName;
-
-        //            movies.Add(movie);
-        //        }
-
-        //        return movies;
-        //    }
-        //}
-
-        //public List<Movie> GetNotes(string id)
-        //{
-        //    List<Movie> movies = new List<Movie>();
-
-        //    var query = (from moviesdb in db.Movies
-        //                 where moviesdb.Mark == null && moviesdb.UserId == id
-        //                 select moviesdb);
-
-        //    return query.ToList();
-        //}
-
-        //public string GetUserName(string id)
-        //{
-        //    var query = (from users in db.Users
-        //                          where users.Id.Equals(id)
-        //                          select users.UserName).FirstOrDefault();
-
-        //    return query;
-        //}
-
-        //public int GetCountOfMovies(string id)
-        //{
-        //    var query = (from movies in db.Movies
-        //                 where movies.UserId.Equals(id) && movies.Mark != null
-        //                 select movies).Count();
-
-        //    return query;
-        //}
-        //public Movie GetMovie(string id)
-        //{
-        //    int movieid = Int32.Parse(id);
-        //    var query = (from moviesdb in db.Movies
-        //                 where moviesdb.MovieId == movieid
-        //                 select moviesdb);
-
-        //    return query.Single() as Movie;
-        //}
-
-        public List<Movie> GetMoviesByTitle(string title) 
+        public void DeleteNote(Note note)
         {
-            var query = from moviesdb in db.Movies
-                        where moviesdb.Title.Contains(title) 
-                        select moviesdb;
-
-            return query.ToList();
+            db.Notes.Remove(note);
+            db.SaveChanges();
         }
 
-        public List<Movie> GetMostPopularMovies(int count = 7, int startIndex = 0) // default: get (7) movies, first movie have index in db (0)
-        {
-            var query = (from moviesdb in db.Movies
-                         orderby moviesdb.MovieId
-                         select moviesdb).Skip(startIndex).Take(count);
 
-            return query.ToList();
-        }
 
-        public void AddMovieByFastAddition(int movieId)
-        {
-            Movie movie = (from moviedb in db.Movies
-                           where moviedb.MovieId == movieId
-                           select moviedb).Single() as Movie;
-        }
+
+
+
+        
+
+        
+
+
+
+
+
+        
 
 
     }
